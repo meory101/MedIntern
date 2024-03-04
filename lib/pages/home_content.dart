@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:med_intern/components/main_drawer.dart';
 import 'package:med_intern/components/recbutton.dart';
 import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
@@ -20,73 +21,9 @@ class _HomeContentState extends State<HomeContent> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text("Navigation Drawer"),
         iconTheme: IconThemeData(color: maincolor, size: 50),
       ),
-      drawer: Drawer(
-        backgroundColor: maincolor,
-        width: MediaQuery.of(context).size.width / 2.5,
-        child: ListView(
-          padding: EdgeInsets.all(4),
-          children: [
-            SizedBox(
-              height: 60,
-            ),
-            RecButton(
-                label: Text(
-                  'Contact us',
-                  style: small_black_title,
-                ),
-                width: MediaQuery.of(context).size.width / 3 - 20,
-                height: 50,
-                color: boxcolor),
-            SizedBox(
-              height: 20,
-            ),
-            RecButton(
-                label: Text(
-                  'Courses',
-                  style: small_black_title,
-                ),
-                width: MediaQuery.of(context).size.width / 3 - 20,
-                height: 50,
-                color: boxcolor),
-            SizedBox(
-              height: 20,
-            ),
-            RecButton(
-                label: Text(
-                  'Schedule',
-                  style: small_black_title,
-                ),
-                width: MediaQuery.of(context).size.width / 3 - 20,
-                height: 50,
-                color: boxcolor),
-            SizedBox(
-              height: 20,
-            ),
-            RecButton(
-                label: Text(
-                  'announcement',
-                  style: small_black_title,
-                ),
-                width: MediaQuery.of(context).size.width / 3 - 20,
-                height: 50,
-                color: boxcolor),
-            SizedBox(
-              height: 20,
-            ),
-            RecButton(
-                label: Text(
-                  'logout',
-                  style: small_black_title,
-                ),
-                width: MediaQuery.of(context).size.width / 3 - 20,
-                height: 50,
-                color: boxcolor)
-          ],
-        ),
-      ),
+      drawer: MainDrawer(),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Container(
@@ -99,15 +36,15 @@ class _HomeContentState extends State<HomeContent> {
                 children: [
                   Text(
                     'Hello ',
-                    style: sub_black_title,
+                    style: sub_black_bold,
                   ),
                   Text(
                     'Ali ',
-                    style: sub_deepgreen_title,
+                    style: sub_deepgreen_bold,
                   ),
                   Text(
                     'Welcome to',
-                    style: sub_black_title,
+                    style: sub_black_bold,
                   ),
                 ],
               ),

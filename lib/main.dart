@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:med_intern/pages/announcment.dart';
 import 'package:med_intern/pages/bottom_app_bar.dart';
+import 'package:med_intern/pages/courses.dart';
+import 'package:med_intern/pages/courses_details.dart';
 import 'package:med_intern/pages/password_recovery.dart';
 import 'package:med_intern/pages/reset_code.dart';
 import 'package:med_intern/pages/reset_password.dart';
@@ -16,12 +19,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Signup(),
+      home: Announcments(),
       routes: {
         "resetpassword": (context) => Resetpassword(),
         "resetcode": (context) => ResetCode(),
         "PasswordRec": (context) => PasswordRec(),
-         "bottomappbar": (context) => CustomBottomAppBar()
+        "bottomappbar": (context) => CustomBottomAppBar(),
+        "courses": (context) => Courses(),
+        "coursesdet": (context) => CourseDet(),
+        "announcments": (context) => Announcments(),
+
+
       },
     );
   }

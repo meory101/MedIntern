@@ -35,7 +35,7 @@ class Textform extends StatelessWidget {
     return Container(
       height: height,
       width: width,
-      padding: EdgeInsets.only(top: 14, left: 15),
+      padding: EdgeInsets.only(left: 15),
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(6),
