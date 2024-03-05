@@ -15,43 +15,49 @@ class _MainAppBarState extends State<MainAppBar> {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: maincolor,
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            height: 80,
-            decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(color: Colors.white, width: 3),
+      title: Container(
+        margin: EdgeInsets.only(top: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              height: 80,
+              decoration: BoxDecoration(
+                border: Border(
+                  left: BorderSide(color: Colors.white, width: 3),
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            width: 50,
-          ),
-          Text(
-            widget.title,
-            style: sub_white_title,
-          ),
-        ],
+            SizedBox(
+              width: 10,
+            ),
+            Expanded(
+              flex: 2,
+              child: Text(
+                '${widget.title}',
+                style: sub_white_title,
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                width: 20,
+                height: 80,
+                margin: EdgeInsets.only(top: 10, right: 6),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  image: DecorationImage(
+                      image: AssetImage(
+                        'assets/images/logo.jpg',
+                      ),
+                      fit: BoxFit.cover),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
       iconTheme: IconThemeData(color: Colors.white, size: 50),
-      actions: [
-      
-        Container(
-          margin: EdgeInsets.only(top: 10, right: 6),
-          height: 80,
-          width: 70,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            image: DecorationImage(
-                image: AssetImage(
-                  'assets/images/logo.jpg',
-                ),
-                fit: BoxFit.cover),
-          ),
-        )
-      ],
     );
   }
 }

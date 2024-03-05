@@ -39,7 +39,9 @@ class _AnnouncmentsState extends State<Announcments> {
           'new content uploaded',
           style: small_dark_grey_title,
         ),
-        SizedBox(height: 20,),
+        SizedBox(
+          height: 20,
+        ),
         Container(
           height: 30,
           decoration: BoxDecoration(
@@ -64,7 +66,44 @@ class _AnnouncmentsState extends State<Announcments> {
         )
       ],
     ),
-     Column(
+    Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 20,
+        ),
+        Text(
+          'Report 3 Grades',
+          style: small_dark_grey_title,
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Container(
+          height: 30,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 7)
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                '14-11-2023',
+                style: small_dark_grey_title,
+              ),
+              Text(
+                '18:37pm',
+                style: small_dark_grey_title,
+              ),
+            ],
+          ),
+        )
+      ],
+    ),
+    Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
@@ -108,8 +147,7 @@ class _AnnouncmentsState extends State<Announcments> {
           height: 20,
         ),
         Text(
-          'New updates to system'
-         ,
+          'Report 3 Grades',
           style: small_dark_grey_title,
         ),
         SizedBox(
@@ -139,46 +177,6 @@ class _AnnouncmentsState extends State<Announcments> {
         )
       ],
     ),
-   
-    Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          height: 20,
-        ),
-        Text(
-         'Report 3 Grades',
-          style: small_dark_grey_title,
-        ),
-        SizedBox(
-          height: 20,
-        ),
-        Container(
-          height: 30,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 7)
-            ],
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                '14-11-2023',
-                style: small_dark_grey_title,
-              ),
-              Text(
-                '18:37pm',
-                style: small_dark_grey_title,
-              ),
-            ],
-          ),
-        )
-      ],
-    ),
-    
-   
   ];
 
   List<Icon> icons = [
@@ -188,12 +186,12 @@ class _AnnouncmentsState extends State<Announcments> {
       size: 40,
     ),
     Icon(
-      CupertinoIcons.star_circle_fill,
+      Icons.file_copy,
       color: subcolor,
       size: 40,
     ),
     Icon(
-      Icons.menu_book_sharp,
+      Icons.barcode_reader,
       color: subcolor,
       size: 40,
     ),
@@ -212,7 +210,6 @@ class _AnnouncmentsState extends State<Announcments> {
         itemCount: 3,
         itemBuilder: (context, index) {
           return Container(
-            
             height: 100,
             margin: const EdgeInsets.only(bottom: 60),
             child: CustomListTile(
