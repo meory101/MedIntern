@@ -5,7 +5,9 @@ import 'package:med_intern/theme/fonts.dart';
 
 class MainAppBar extends StatefulWidget {
   String title;
-  MainAppBar({required this.title});
+  Color? color;
+  bool? showimage;
+  MainAppBar({required this.title, this.color, this.showimage});
   @override
   State<MainAppBar> createState() => _MainAppBarState();
 }
@@ -14,7 +16,25 @@ class _MainAppBarState extends State<MainAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: maincolor,
+      backgroundColor: widget.color == null ? maincolor : widget.color,
+      elevation: 0,
+      leading: InkWell(
+        onTap: () {
+          Scaffold.of(context).openDrawer();
+          ;
+        },
+        child: Container(
+          width: 50,
+          height: 50,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: widget.color != null
+                  ? AssetImage('assets/images/menu.png')
+                  : AssetImage('assets/images/wmenu.png'),
+            ),
+          ),
+        ),
+      ),
       title: Container(
         margin: EdgeInsets.only(top: 10),
         child: Row(
@@ -40,19 +60,21 @@ class _MainAppBarState extends State<MainAppBar> {
             ),
             Expanded(
               flex: 1,
-              child: Container(
-                width: 20,
-                height: 80,
-                margin: EdgeInsets.only(top: 10, right: 6),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
-                      image: AssetImage(
-                        'assets/images/logo.jpg',
+              child: widget.showimage == null
+                  ? Container(
+                      width: 20,
+                      height: 80,
+                      margin: EdgeInsets.only(top: 10, right: 6),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        image: DecorationImage(
+                            image: AssetImage(
+                              'assets/images/logo.jpg',
+                            ),
+                            fit: BoxFit.cover),
                       ),
-                      fit: BoxFit.cover),
-                ),
-              ),
+                    )
+                  : Text(''),
             )
           ],
         ),

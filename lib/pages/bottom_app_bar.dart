@@ -1,13 +1,14 @@
-import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:med_intern/pages/attendance.dart';
 import 'package:med_intern/pages/home_content.dart';
-import 'package:med_intern/pages/reset_code.dart';
-import 'package:med_intern/pages/reset_password.dart';
-import 'package:med_intern/theme/colors.dart';
+import 'package:med_intern/pages/more.dart';
+import 'package:med_intern/pages/urgent_call.dart';
 import 'package:med_intern/theme/fonts.dart';
 
 class CustomBottomAppBar extends StatefulWidget {
+  const CustomBottomAppBar({super.key});
+
   @override
   State<CustomBottomAppBar> createState() => _CustomBottomAppBarState();
 }
@@ -19,51 +20,127 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: Container(
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
-            height: 60,
-            margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            child: BottomAppBar(
-                child: FlashyTabBar(
-              selectedIndex: _selectedIndex,
-              showElevation: true,
-              onItemSelected: (index) => setState(() {
-                _selectedIndex = index;
-              }),
-              items: [
-                FlashyTabBarItem(
-                  icon: Icon(
-                    CupertinoIcons.person,
-                    color: maincolor,
+          margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: Colors.grey)),
+          height: 80,
+          child: ListView(scrollDirection: Axis.horizontal, children: [
+            GNav(
+                selectedIndex: _selectedIndex,
+                onTabChange: (value) {
+                  setState(() {
+                    _selectedIndex = value;
+                  });
+                },
+                tabs: [
+                  GButton(
+                    iconSize: 40,
+                    icon: Icons.home_filled,
+                    text: 'Home',
+                    textStyle: sub_black_bold,
                   ),
-                  title: Text(
-                    'Profile',
+                  GButton(
+                    iconSize: 40,
+                    icon: Icons.notifications_active_outlined,
+                    text: 'Urgent call',
+                    textStyle: sub_black_bold,
                   ),
-                ),
-                 FlashyTabBarItem(
-                  icon: Icon(
-                    CupertinoIcons.person,
-                    color: maincolor,
+                  GButton(
+                    iconSize: 40,
+                    icon: Icons.calendar_today_rounded,
+                    text: 'Attendance',
+                    textStyle: sub_black_bold,
                   ),
-                  title: Text(
-                    'Profile',
-                  ),
-                ),
-                 FlashyTabBarItem(
-                  icon: Icon(
-                    CupertinoIcons.person,
-                    color: maincolor,
-                  ),
-                  title: Text(
-                    'Profile',
-                  ),
-                ),
-              ],
-            ))),
+                  GButton(
+                    iconSize: 40,
+                    icon: Icons.person_2_outlined,
+                    text: 'More',
+                    textStyle: sub_black_bold,
+                  )
+                ]),
+          ]),
+        ),
         body: _selectedIndex == 0
-            ? HomeContent()
+            ? const HomeContent()
             : _selectedIndex == 1
-                ? HomeContent()
-                : HomeContent(),
+                ? const UrgentCalls()
+                : _selectedIndex == 2
+                    ? const Attendance()
+                    : More(
+                        data: [
+                          {
+                            'title': Text(
+                              'Abdulaziz Nawaf',
+                              style: med_grey_title,
+                            ),
+                            'icon': const Icon(
+                              Icons.person_2_outlined,
+                              size: 40,
+                              color: Colors.black,
+                            )
+                          },
+                          {
+                            'title': Text(
+                              '678054235',
+                              style: med_grey_title,
+                            ),
+                            'icon': const Icon(
+                              Icons.medical_services,
+                              size: 40,
+                              color: Colors.black,
+                            )
+                          },
+                          {
+                            'title': Text(
+                              'Aziz.na@hotmail.com',
+                              style: med_grey_title,
+                            ),
+                            'icon': const Icon(
+                              Icons.mail,
+                              size: 40,
+                              color: Colors.black,
+                            )
+                          },
+                          {
+                            'title': Text(
+                              'Bachelor\'s degree in "Radiology"',
+                              style: med_grey_title,
+                            ),
+                            'icon': const Icon(
+                              Icons.stars,
+                              size: 40,
+                              color: Colors.black,
+                            )
+                          },
+                          const {
+                            'title': Row(
+                              children: [
+                                Icon(
+                                  Icons.password,
+                                  color: Colors.grey,
+                                  size: 40,
+                                ),
+                                Icon(
+                                  Icons.password,
+                                  color: Colors.grey,
+                                  size: 40,
+                                ),
+                                Icon(
+                                  Icons.password,
+                                  color: Colors.grey,
+                                  size: 40,
+                                ),
+                              ],
+                            ),
+                            'icon': Icon(
+                              Icons.key_off,
+                              size: 40,
+                              color: Colors.black,
+                            )
+                          },
+                        ],
+                      ),
       ),
     );
   }

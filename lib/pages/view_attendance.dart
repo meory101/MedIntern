@@ -89,10 +89,7 @@ class _ViewAttendanceState extends State<ViewAttendance> {
         size: 40,
       ),
     ];
-    List<String> routes = [
-      'record_attendance',
-      'view_attendance',
-    ];
+   
     return Scaffold(
         drawer: const MainDrawer(),
         appBar: PreferredSize(
@@ -108,7 +105,6 @@ class _ViewAttendanceState extends State<ViewAttendance> {
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
-              Navigator.of(context).pushNamed('${routes[index]}');
             },
             child: Container(
               margin: EdgeInsets.only(bottom: 10),

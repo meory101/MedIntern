@@ -14,7 +14,9 @@ class More extends StatefulWidget {
 class _MoreState extends State<More> {
   @override
   Widget build(BuildContext context) {
+    GlobalKey<ScaffoldState> key = GlobalKey();
     return Scaffold(
+      key: key,
       drawer: const MainDrawer(),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -29,10 +31,19 @@ class _MoreState extends State<More> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const Icon(
-                      Icons.menu,
-                      size: 40,
-                      color: Colors.white,
+                    InkWell(
+                      onTap: () {
+                        key.currentState!.openDrawer();
+                      },
+                      child: Container(
+                        width: 50,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('assets/images/wmenu.png'),
+                          ),
+                        ),
+                      ),
                     ),
                     const SizedBox(
                       width: 30,
@@ -62,9 +73,9 @@ class _MoreState extends State<More> {
                     backgroundColor: maincolor,
                     radius: 60,
                     child: const Icon(
-                      Icons.person,
+                      Icons.person_2_outlined,
                       size: 60,
-                      color: Colors.black,
+                      color: Colors.white,
                     ),
                   ),
                 ),

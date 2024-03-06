@@ -15,26 +15,28 @@ class _MainDrawerState extends State<MainDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      
-      backgroundColor: maincolor,
       width: MediaQuery.of(context).size.width / 2.5,
       child: SafeArea(
         child: ListView(
           padding: EdgeInsets.all(4),
           children: [
             Container(
-              alignment: Alignment.bottomLeft,
-              width: double.infinity,
-              child: IconButton(
-                  onPressed: () {
+                alignment: Alignment.bottomLeft,
+                width: double.infinity,
+                child: InkWell(
+                  onTap: () {
                     Navigator.of(context).pop();
                   },
-                  icon: Icon(
-                    CupertinoIcons.line_horizontal_3,
-                    color: Colors.white,
-                    size: 50,
-                  )),
-            ),
+                  child: Container(
+                    width: 50,
+                    height:60,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/menu.png'),
+                      ),
+                    ),
+                  ),
+                )),
             SizedBox(
               height: 20,
             ),

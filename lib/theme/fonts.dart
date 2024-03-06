@@ -35,7 +35,9 @@ TextStyle med_white_title =
 TextStyle small_white_title =
     TextStyle(color: const Color.fromARGB(255, 255, 255, 255), fontSize: 16);
 
+
 TextStyle main_grey_title = TextStyle(color: Colors.grey, fontSize: 50);
 TextStyle sub_grey_title = TextStyle(color: Colors.grey, fontSize: 24);
+TextStyle med_grey_title = TextStyle(color: Colors.grey, fontSize: 18);
 TextStyle small_grey_title = TextStyle(color: Colors.grey, fontSize: 16);
 TextStyle small_dark_grey_title = TextStyle(color: Color.fromARGB(255, 105, 104, 104), fontSize: 16);

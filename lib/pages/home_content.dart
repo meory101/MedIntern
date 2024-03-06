@@ -1,7 +1,7 @@
-import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:med_intern/components/main_appbar.dart';
 import 'package:med_intern/components/main_drawer.dart';
 import 'package:med_intern/components/recbutton.dart';
 import 'package:med_intern/theme/colors.dart';
@@ -18,10 +18,13 @@ class _HomeContentState extends State<HomeContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        iconTheme: IconThemeData(color: maincolor, size: 50),
+        appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(80),
+        child: MainAppBar(
+          showimage: false,
+          color: Colors.transparent,
+          title: '',
+        ),
       ),
       drawer: MainDrawer(),
       body: SafeArea(
