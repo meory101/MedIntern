@@ -11,7 +11,7 @@ TextStyle med_deepgreen_bold =
 TextStyle small_deepgreen_title = TextStyle(color: subcolor, fontSize: 16);
 
 TextStyle main_green_title = TextStyle(color: maincolor, fontSize: 50);
-TextStyle sub_green_title = TextStyle(color: maincolor, fontSize: 26);
+TextStyle sub_green_title = TextStyle(color: maincolor, fontSize: 24);
 TextStyle med_green_title = TextStyle(color: maincolor, fontSize: 18);
 TextStyle small_green_title = TextStyle(color: maincolor, fontSize: 16);
 
@@ -35,5 +35,7 @@ TextStyle med_white_title =
 TextStyle small_white_title =
     TextStyle(color: const Color.fromARGB(255, 255, 255, 255), fontSize: 16);
 
+TextStyle main_grey_title = TextStyle(color: Colors.grey, fontSize: 50);
+TextStyle sub_grey_title = TextStyle(color: Colors.grey, fontSize: 24);
 TextStyle small_grey_title = TextStyle(color: Colors.grey, fontSize: 16);
 TextStyle small_dark_grey_title = TextStyle(color: Color.fromARGB(255, 105, 104, 104), fontSize: 16);

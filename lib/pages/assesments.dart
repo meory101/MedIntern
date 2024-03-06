@@ -21,12 +21,12 @@ class _AssesmentsState extends State<Assesments> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80),
         child: MainAppBar(
-          title: 'Course lessons',
+          title: 'Assesments',
         ),
       ),
       body: InkWell(
         onTap: () {
-          // Navigator.of(context).pushNamed('coursesdet');
+          Navigator.of(context).pushNamed('report');
         },
         child: Container(
           margin: EdgeInsets.only(top: 40),

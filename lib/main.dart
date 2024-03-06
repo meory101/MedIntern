@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:med_intern/pages/announcment.dart';
 import 'package:med_intern/pages/assesments.dart';
 import 'package:med_intern/pages/bottom_app_bar.dart';
+import 'package:med_intern/pages/course_content.dart';
 import 'package:med_intern/pages/courses.dart';
 import 'package:med_intern/pages/courses_details.dart';
+import 'package:med_intern/pages/grades.dart';
 import 'package:med_intern/pages/lessons.dart';
 import 'package:med_intern/pages/password_recovery.dart';
 import 'package:med_intern/pages/report.dart';
@@ -33,7 +35,9 @@ class MyApp extends StatelessWidget {
         "announcments": (context) => Announcments(),
         "courselessons": (context) => CourseLessons(),
         "assesments": (context) => Assesments(),
-        "report" :(context) => Report(),
+        "report": (context) => Report(),
+        'grades': (context) => grades(),
+        'coursecontent': (context) => cource_content(),
       },
     );
   }

@@ -58,8 +58,8 @@ class _CourseDetState extends State<CourseDet> {
     ];
     List<String> routes = [
       'announcments',
-      'announcments',
-      'announcments',
+      'grades',
+      'coursecontent',
       'announcments'
     ];
     return Scaffold(
