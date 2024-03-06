@@ -4,7 +4,7 @@ import 'package:med_intern/theme/colors.dart';
 
 class CustomListTile extends StatefulWidget {
   Icon icon;
-  Text title;
+  Widget title;
   Widget? subtitle;
   Color color;
   CustomListTile({required this.icon, required this.title, this.subtitle,required this.color});

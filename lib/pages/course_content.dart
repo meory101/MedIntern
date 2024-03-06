@@ -6,14 +6,14 @@ import 'package:med_intern/components/main_drawer.dart';
 import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
 
-class cource_content extends StatefulWidget {
-  const cource_content({super.key});
+class course_content extends StatefulWidget {
+  const course_content({super.key});
 
   @override
-  State<cource_content> createState() => _cource_contentState();
+  State<course_content> createState() => _course_contentState();
 }
 
-class _cource_contentState extends State<cource_content> {
+class _course_contentState extends State<course_content> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
