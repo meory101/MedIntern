@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:med_intern/components/list_tile.dart';
 import 'package:med_intern/components/main_appbar.dart';
@@ -6,22 +5,19 @@ import 'package:med_intern/components/main_drawer.dart';
 import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
 
-class CourseDet extends StatefulWidget {
-
+class SupervisorCourseDet extends StatefulWidget {
+  Text title;
+  SupervisorCourseDet({required this.title});
   @override
-  State<CourseDet> createState() => _CourseDetState();
+  State<SupervisorCourseDet> createState() => _SupervisorCourseDetState();
 }
 
-class _CourseDetState extends State<CourseDet> {
+class _SupervisorCourseDetState extends State<SupervisorCourseDet> {
   @override
   Widget build(BuildContext context) {
     List<Text> titles = [
       Text(
-        'Announcments',
-        style: sub_white_title,
-      ),
-      Text(
-        'Grades',
+        'Announcment',
         style: sub_white_title,
       ),
       Text(
@@ -29,44 +25,21 @@ class _CourseDetState extends State<CourseDet> {
         style: sub_white_title,
       ),
       Text(
-        'Dr.Khaled',
+        'Grade',
+        style: sub_white_title,
+      ),
+      Text(
+        'Attendance',
         style: sub_white_title,
       ),
     ];
-    List<Icon> icons = [
-      Icon(
-        Icons.barcode_reader,
-        color: subcolor,
-        size: 40,
-      ),
-      Icon(
-        CupertinoIcons.star_circle_fill,
-        color: subcolor,
-        size: 40,
-      ),
-      Icon(
-        Icons.menu_book_sharp,
-        color: subcolor,
-        size: 40,
-      ),
-      Icon(
-        CupertinoIcons.person_crop_circle_fill,
-        color: subcolor,
-        size: 40,
-      ),
-    ];
-    List<String> routes = [
-      'announcments',
-      'grades',
-      'coursecontent',
-      'announcments'
-    ];
+
     return Scaffold(
       drawer: const MainDrawer(),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80),
         child: MainAppBar(
-          title: 'Courses',
+          title: '${widget.title.data}',
         ),
       ),
       body: Container(
@@ -76,15 +49,12 @@ class _CourseDetState extends State<CourseDet> {
           itemBuilder: (context, index) {
             return InkWell(
               onTap: () {
-                Navigator.of(context).pushNamed('${routes[index]}');
+                // Navigator.of(context).pushNamed('${routes[index]}');
               },
               child: Container(
                 margin: const EdgeInsets.only(bottom: 20),
                 child: CustomListTile(
-                  color: light_box_color,
-                  icon: icons[index],
-                  title: titles[index],
-                ),
+                    color: light_box_color, title: titles[index]),
               ),
             );
           },

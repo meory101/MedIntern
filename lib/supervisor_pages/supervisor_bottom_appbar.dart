@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:med_intern/supervisor_pages/supervisor_courses.dart';
 import 'package:med_intern/supervisor_pages/supervisor_home_content.dart';
 import 'package:med_intern/user_pages/attendance.dart';
 import 'package:med_intern/user_pages/home_content.dart';
@@ -70,7 +71,7 @@ class _SupervisorBottomAppBarState extends State<SupervisorBottomAppBar> {
             : _selectedIndex == 1
                 ? const UrgentCalls()
                 : _selectedIndex == 2
-                    ? const Attendance()
+                    ? const SupervisorCourses()
                     : More(
                         data: [
                           {
