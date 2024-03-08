@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:med_intern/components/recbutton.dart';
 import 'package:med_intern/components/textform.dart';
-import 'package:med_intern/pages/bottom_app_bar.dart';
-import 'package:med_intern/pages/home_content.dart';
+import 'package:med_intern/user_pages/bottom_app_bar.dart';
+import 'package:med_intern/user_pages/home_content.dart';
 import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
 

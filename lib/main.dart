@@ -1,22 +1,25 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:med_intern/pages/announcment.dart';
-import 'package:med_intern/pages/assesments.dart';
-import 'package:med_intern/pages/attendance.dart';
-import 'package:med_intern/pages/bottom_app_bar.dart';
-import 'package:med_intern/pages/course_content.dart';
-import 'package:med_intern/pages/courses.dart';
-import 'package:med_intern/pages/courses_details.dart';
-import 'package:med_intern/pages/grades.dart';
-import 'package:med_intern/pages/lessons.dart';
-import 'package:med_intern/pages/more.dart';
-import 'package:med_intern/pages/password_recovery.dart';
-import 'package:med_intern/pages/record_attendance.dart';
-import 'package:med_intern/pages/report.dart';
-import 'package:med_intern/pages/reset_code.dart';
-import 'package:med_intern/pages/reset_password.dart';
-import 'package:med_intern/pages/login.dart';
-import 'package:med_intern/pages/urgent_call.dart';
-import 'package:med_intern/pages/view_attendance.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:med_intern/supervisor_pages/supervisor_bottom_appbar.dart';
+import 'package:med_intern/user_pages/announcment.dart';
+import 'package:med_intern/user_pages/assesments.dart';
+import 'package:med_intern/user_pages/attendance.dart';
+import 'package:med_intern/user_pages/bottom_app_bar.dart';
+import 'package:med_intern/user_pages/course_content.dart';
+import 'package:med_intern/user_pages/courses.dart';
+import 'package:med_intern/user_pages/courses_details.dart';
+import 'package:med_intern/user_pages/grades.dart';
+import 'package:med_intern/user_pages/lessons.dart';
+import 'package:med_intern/user_pages/more.dart';
+import 'package:med_intern/user_pages/password_recovery.dart';
+import 'package:med_intern/user_pages/record_attendance.dart';
+import 'package:med_intern/user_pages/report.dart';
+import 'package:med_intern/user_pages/reset_code.dart';
+import 'package:med_intern/user_pages/reset_password.dart';
+import 'package:med_intern/user_pages/login.dart';
+import 'package:med_intern/user_pages/urgent_call.dart';
+import 'package:med_intern/user_pages/view_attendance.dart';
 import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
 
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:CustomBottomAppBar() ,
+      home: SupervisorBottomAppBar(),
       routes: {
         "resetpassword": (context) => Resetpassword(),
         "resetcode": (context) => ResetCode(),

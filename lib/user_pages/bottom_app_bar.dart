@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:med_intern/pages/attendance.dart';
-import 'package:med_intern/pages/home_content.dart';
-import 'package:med_intern/pages/more.dart';
-import 'package:med_intern/pages/urgent_call.dart';
+import 'package:med_intern/user_pages/attendance.dart';
+import 'package:med_intern/user_pages/home_content.dart';
+import 'package:med_intern/user_pages/more.dart';
+import 'package:med_intern/user_pages/urgent_call.dart';
 import 'package:med_intern/theme/fonts.dart';
 
 class CustomBottomAppBar extends StatefulWidget {
-  const CustomBottomAppBar({super.key});
-
   @override
   State<CustomBottomAppBar> createState() => _CustomBottomAppBarState();
 }
@@ -25,8 +23,10 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
               borderRadius: BorderRadius.circular(10),
               border: Border.all(color: Colors.grey)),
           height: 80,
-          child: ListView(scrollDirection: Axis.horizontal, children: [
-            GNav(
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              GNav(
                 selectedIndex: _selectedIndex,
                 onTabChange: (value) {
                   setState(() {
@@ -58,8 +58,10 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
                     text: 'More',
                     textStyle: sub_black_bold,
                   )
-                ]),
-          ]),
+                ],
+              ),
+            ],
+          ),
         ),
         body: _selectedIndex == 0
             ? const HomeContent()
