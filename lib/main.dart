@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:med_intern/supervisor_pages/supervisor_bottom_appbar.dart';
+import 'package:med_intern/test.dart';
 import 'package:med_intern/user_pages/announcment.dart';
 import 'package:med_intern/user_pages/assesments.dart';
 import 'package:med_intern/user_pages/attendance.dart';
@@ -28,13 +29,13 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key}); 
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SupervisorBottomAppBar(),
+      home: Test(),
       routes: {
         "resetpassword": (context) => Resetpassword(),
         "resetcode": (context) => ResetCode(),
