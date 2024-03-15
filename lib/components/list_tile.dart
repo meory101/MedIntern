@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class CustomListTile extends StatefulWidget {
-  Icon? icon;
-  Widget title;
-  Widget? subtitle;
-  Color color;
+ final Icon? icon;
+ final Widget title;
+ final Widget? subtitle;
+ final Color color;
   CustomListTile(
       {super.key,
-       this.icon,
+      this.icon,
       required this.title,
       this.subtitle,
       required this.color});
@@ -25,13 +25,12 @@ class _CustomListTileState extends State<CustomListTile> {
         borderRadius: BorderRadius.circular(20),
       ),
       child: ListTile(
-        leading:widget.icon!=null? widget.icon:null,
-        title: Padding(
-            padding: const EdgeInsets.only(left: 20, top: 20),
-            child: widget.title),
-        subtitle: Padding(
-            padding: const EdgeInsets.only(left: 20),
-            child: widget.subtitle ?? const Text('')),
+          
+          leading: widget.icon != null ? widget.icon : null,
+          title:widget.title,
+          subtitle: 
+             widget.subtitle ?? null
+        
       ),
     );
   }

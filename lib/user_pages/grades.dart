@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:med_intern/components/list_tile.dart';
 import 'package:med_intern/components/main_appbar.dart';
 import 'package:med_intern/components/main_drawer.dart';
 import 'package:med_intern/theme/colors.dart';

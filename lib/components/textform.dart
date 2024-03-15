@@ -3,7 +3,7 @@ import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
 
 class Textform extends StatelessWidget {
-  const Textform(
+  const   Textform(
       {super.key,
       required this.controller,
       required this.text,
@@ -12,6 +12,7 @@ class Textform extends StatelessWidget {
       this.val,
       this.pre_icon,
       this.suf_icon,
+
       required this.color,
       required this.height,
       required this.width,
@@ -22,11 +23,12 @@ class Textform extends StatelessWidget {
   final bool obscure;
   final String? Function(String?)? val;
   final Color color;
-  final Widget? pre_icon;
-  final Widget? suf_icon;
+  final Icon? pre_icon;
+  final IconButton? suf_icon;
   final double height;
   final double width;
   final TextStyle? style;
+
 
   @override
   Widget build(BuildContext context) {
@@ -40,24 +42,20 @@ class Textform extends StatelessWidget {
           boxShadow: [
             BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 7)
           ]),
-      child: Padding(
-        padding: const EdgeInsets.only(top: 10),
-        child: TextFormField(
-            obscuringCharacter: '*',
-            style: style,
-            cursorColor: subcolor,
-            controller: controller,
-            keyboardType: textInputType,
-            obscureText: obscure,
-            decoration: InputDecoration(
-              prefixIcon: pre_icon,
-              suffixIcon: suf_icon,
-              hintStyle: small_black_title,
-              hintText: text,
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.all(0),
-            )),
-      ),
+      child: TextFormField(
+          obscuringCharacter: '*',
+          style: style,
+          cursorColor: subcolor,
+          controller: controller,
+          keyboardType: textInputType,
+          obscureText: obscure,
+          decoration: InputDecoration(
+            prefixIcon: pre_icon,
+            suffixIcon:suf_icon ,
+            hintStyle: small_grey_title,
+            hintText: text,
+            border: InputBorder.none,
+          )),
     );
   }
 }

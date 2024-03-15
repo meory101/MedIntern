@@ -6,7 +6,7 @@ import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
 
 class SupervisorCourseDet extends StatefulWidget {
-  Text title;
+  final Text title;
   SupervisorCourseDet({required this.title});
   @override
   State<SupervisorCourseDet> createState() => _SupervisorCourseDetState();
@@ -33,7 +33,12 @@ class _SupervisorCourseDetState extends State<SupervisorCourseDet> {
         style: sub_white_title,
       ),
     ];
-
+    List<String> routes = [
+      'superannounc',
+      'supcoursecontent',
+      'superannounc',
+      'superannounc',
+    ];
     return Scaffold(
       drawer: const MainDrawer(),
       appBar: PreferredSize(
@@ -49,7 +54,7 @@ class _SupervisorCourseDetState extends State<SupervisorCourseDet> {
           itemBuilder: (context, index) {
             return InkWell(
               onTap: () {
-                // Navigator.of(context).pushNamed('${routes[index]}');
+                Navigator.of(context).pushNamed('${routes[index]}');
               },
               child: Container(
                 margin: const EdgeInsets.only(bottom: 20),

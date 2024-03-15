@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:med_intern/Admin_pages/editaccount.dart';
+import 'package:med_intern/Admin_pages/rotation.dart';
+import 'package:med_intern/supervisor_pages/announcment.dart';
+import 'package:med_intern/supervisor_pages/course_content.dart';
+import 'package:med_intern/supervisor_pages/course_material.dart';
+import 'package:med_intern/supervisor_pages/create_announcment.dart';
 import 'package:med_intern/supervisor_pages/supervisor_bottom_appbar.dart';
-import 'package:med_intern/test.dart';
 import 'package:med_intern/user_pages/announcment.dart';
 import 'package:med_intern/user_pages/assesments.dart';
 import 'package:med_intern/user_pages/attendance.dart';
@@ -13,29 +17,38 @@ import 'package:med_intern/user_pages/courses_details.dart';
 import 'package:med_intern/user_pages/grades.dart';
 import 'package:med_intern/user_pages/lessons.dart';
 import 'package:med_intern/user_pages/more.dart';
-import 'package:med_intern/user_pages/password_recovery.dart';
+import 'package:med_intern/auth_pages/password_recovery.dart';
 import 'package:med_intern/user_pages/record_attendance.dart';
 import 'package:med_intern/user_pages/report.dart';
-import 'package:med_intern/user_pages/reset_code.dart';
-import 'package:med_intern/user_pages/reset_password.dart';
-import 'package:med_intern/user_pages/login.dart';
+import 'package:med_intern/auth_pages/reset_code.dart';
+import 'package:med_intern/auth_pages/reset_password.dart';
 import 'package:med_intern/user_pages/urgent_call.dart';
 import 'package:med_intern/user_pages/view_attendance.dart';
-import 'package:med_intern/theme/colors.dart';
-import 'package:med_intern/theme/fonts.dart';
+
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key}); 
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Test(),
+      //authentication
+      // home:LogIn(),
+
+      //user
+      // home: CustomBottomAppBar(),
+
+      //admin
+      // home: Adminbottomappbar(),
+
+      //supervisor
+      home: SupervisorBottomAppBar(),
+      
       routes: {
         "resetpassword": (context) => Resetpassword(),
         "resetcode": (context) => ResetCode(),
@@ -54,6 +67,12 @@ class MyApp extends StatelessWidget {
         'view_attendance': (context) => ViewAttendance(),
         'urgent_calls': (context) => UrgentCalls(),
         'more': (context) => More(),
+        'rotation': (context) => Rotation(),
+        'editaccount': (context) => EditAccount(),
+        'superannounc' :(context) => SupAnnouncments(),
+        'createannouncment' :(context) => CreateAnnouncment(),
+        'supcoursecontent' :(context) => SupCourseContent()
+    ,'coursematerial' : (context) => CourseMaterial()
       },
     );
   }

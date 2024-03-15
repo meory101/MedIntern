@@ -1,9 +1,8 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:med_intern/components/main_appbar.dart';
 import 'package:med_intern/components/main_drawer.dart';
-import 'package:med_intern/components/recbutton.dart';
 import 'package:med_intern/components/roundbutton.dart';
-import 'package:med_intern/components/textform.dart';
 import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
 
@@ -17,6 +16,26 @@ class RecordAttendace extends StatefulWidget {
 class _RecordAttendaceState extends State<RecordAttendace> {
   @override
   Widget build(BuildContext context) {
+    RecordAttendance() {
+      // if recorded
+      AwesomeDialog(
+        context: context,
+        dialogType: DialogType.success,
+        animType: AnimType.rightSlide,
+        title: 'Confirmation message',
+        desc: 'Your attendance recorded successfully',
+      )..show();
+      //else
+      AwesomeDialog(
+        context: context,
+        dialogType: DialogType.error,
+        animType: AnimType.rightSlide,
+        title: 'Confirmation message',
+        desc:
+            'Your attendance can\'t be recorded because you are not in the hospital area',
+      )..show();
+    }
+
     return Scaffold(
       drawer: MainDrawer(),
       appBar: PreferredSize(
@@ -81,6 +100,7 @@ class _RecordAttendaceState extends State<RecordAttendace> {
               width: double.infinity,
               alignment: Alignment.center,
               child: RoundButton(
+                  fun: RecordAttendance,
                   label: Text(
                     'Record attendance',
                     style: small_white_title,

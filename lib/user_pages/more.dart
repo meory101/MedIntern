@@ -5,8 +5,9 @@ import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
 
 class More extends StatefulWidget {
-  var data;
-  More({super.key, this.data});
+  final data;
+  final extra;
+  More({super.key, this.data, this.extra});
   @override
   State<More> createState() => _MoreState();
 }
@@ -93,7 +94,17 @@ class _MoreState extends State<More> {
                         color: Colors.transparent);
                   },
                 ),
-              )
+              ),
+              if (widget.extra != null) ...[
+                Container(
+                  alignment: Alignment.bottomCenter,
+                  margin: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height / 6 +
+                        MediaQuery.of(context).size.height / 2,
+                  ),
+                  child: widget.extra,
+                )
+              ]
             ],
           ),
         ),

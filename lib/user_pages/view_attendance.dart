@@ -19,77 +19,93 @@ class _ViewAttendanceState extends State<ViewAttendance> {
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            '2-10-2023',
-            style: sub_white_title,
+          Expanded(
+            flex: 1,
+            child: Text(
+              '2-10-2023',
+              style: sub_white_title,
+            ),
           ),
-          Column(
-            children: [
-              Text('Monday', style: small_dark_grey_title),
-              Text('7:30 am - 3:00 pm', style: small_dark_grey_title),
-            ],
+          Expanded(
+            flex: 1,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Monday', style: small_dark_grey_title),
+                Text('7:30 am - 3:00 pm', style: small_dark_grey_title),
+              ],
+            ),
           ),
         ],
       ),
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            '3-10-2023',
-            style: sub_white_title,
+          Expanded(
+            flex: 1,
+            child: Text(
+              '3-10-2023',
+              style: sub_white_title,
+            ),
           ),
-          Column(
-            children: [
-              Text('Tuesday', style: small_dark_grey_title),
-              Text('7:44 am - 3:00 pm', style: small_dark_grey_title),
-            ],
-          ),
-        ],
-      ),
-       Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            '4-10-2023',
-            style: sub_white_title,
-          ),
-          Column(
-            children: [
-              Text('Wednsday', style: small_dark_grey_title),
-              Text('7:59 am - 3:00 pm', style: small_dark_grey_title),
-            ],
+          Expanded(
+            flex: 1,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Tuesday', style: small_dark_grey_title),
+                Text('7:44 am - 3:00 pm', style: small_dark_grey_title),
+              ],
+            ),
           ),
         ],
       ),
-       Row(
+      Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            '5-10-2023',
-            style: sub_white_title,
+          Expanded(
+            flex: 1,
+            child: Text(
+              '4-10-2023',
+              style: sub_white_title,
+            ),
           ),
-          Column(
-            children: [
-              Text('Thursday', style: small_dark_grey_title),
-              Text('7:30 am - 3:00 pm', style: small_dark_grey_title),
-            ],
+          Expanded(
+            flex: 1,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Wednsday', style: small_dark_grey_title),
+                Text('7:59 am - 3:00 pm', style: small_dark_grey_title),
+              ],
+            ),
+          ),
+        ],
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            flex: 1,
+            child: Text(
+              '5-10-2023',
+              style: sub_white_title,
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Thursday', style: small_dark_grey_title),
+                Text('7:30 am - 3:00 pm', style: small_dark_grey_title),
+              ],
+            ),
           ),
         ],
       ),
     ];
-    List<Icon> icons = [
-      Icon(
-        Icons.location_on,
-        color: subcolor,
-        size: 40,
-      ),
-      Icon(
-        Icons.location_history,
-        color: subcolor,
-        size: 40,
-      ),
-    ];
-   
+
     return Scaffold(
         drawer: const MainDrawer(),
         appBar: PreferredSize(
@@ -99,27 +115,26 @@ class _ViewAttendanceState extends State<ViewAttendance> {
           ),
         ),
         body: Container(
-      margin: EdgeInsets.only(top: 40),
-      child: ListView.builder(
-        itemCount: 4,
-        itemBuilder: (context, index) {
-          return InkWell(
-            onTap: () {
+          margin: EdgeInsets.only(top: 40),
+          child: ListView.builder(
+            itemCount: 4,
+            itemBuilder: (context, index) {
+              return InkWell(
+                onTap: () {},
+                child: Container(
+                  margin: EdgeInsets.only(bottom: 10),
+                  child: CustomListTile(
+                      color: light_box_color,
+                      icon: Icon(
+                        Icons.check_box,
+                        size: 40,
+                        color: Colors.white,
+                      ),
+                      title: titles[index]),
+                ),
+              );
             },
-            child: Container(
-              margin: EdgeInsets.only(bottom: 10),
-              child: CustomListTile(
-                  color: light_box_color,
-                  icon: Icon(
-                    Icons.check_box,
-                    size: 40,
-                    color: Colors.white,
-                  ),
-                  title: titles[index]),
-            ),
-          );
-        },
-      ),
-    ));
+          ),
+        ));
   }
 }

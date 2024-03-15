@@ -23,10 +23,8 @@ class _UrgentCallsState extends State<UrgentCalls> {
       'Dr.khalid',
       style: med_black_title,
     ),
-  
   ];
   List<Widget> subtitles = [
- 
     Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -103,7 +101,6 @@ class _UrgentCallsState extends State<UrgentCalls> {
     ),
   ];
 
- 
   @override
   Widget build(BuildContext context) {
     return Scaffold(

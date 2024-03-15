@@ -1,18 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:med_intern/supervisor_pages/supervisor_courses.dart';
-import 'package:med_intern/supervisor_pages/supervisor_home_content.dart';
-import 'package:med_intern/user_pages/more.dart';
-import 'package:med_intern/user_pages/urgent_call.dart';
+import 'package:med_intern/Admin_pages/Admin_home_content.dart';
+import 'package:med_intern/Admin_pages/mangeschedual.dart';
+import 'package:med_intern/components/roundbutton.dart';
+import 'package:med_intern/Admin_pages/manage_account.dart';
+import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
+import 'package:med_intern/user_pages/more.dart';
 
-class SupervisorBottomAppBar extends StatefulWidget {
+class Adminbottomappbar extends StatefulWidget {
+  const Adminbottomappbar({super.key});
+
   @override
-  State<SupervisorBottomAppBar> createState() => _SupervisorBottomAppBarState();
+  State<Adminbottomappbar> createState() => _AdminbottomappbarState();
 }
 
-class _SupervisorBottomAppBarState extends State<SupervisorBottomAppBar> {
+class _AdminbottomappbarState extends State<Adminbottomappbar> {
   int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -43,14 +47,14 @@ class _SupervisorBottomAppBarState extends State<SupervisorBottomAppBar> {
                   ),
                   GButton(
                     iconSize: 40,
-                    icon: Icons.notifications_active_outlined,
-                    text: 'Urgent call',
+                    icon: Icons.manage_accounts_rounded,
+                    text: 'Mange Account',
                     textStyle: sub_black_bold,
                   ),
                   GButton(
                     iconSize: 40,
-                    icon: CupertinoIcons.book_fill,
-                    text: 'Courses',
+                    icon: Icons.calendar_month_rounded,
+                    text: 'Schedule',
                     textStyle: sub_black_bold,
                   ),
                   GButton(
@@ -65,16 +69,21 @@ class _SupervisorBottomAppBarState extends State<SupervisorBottomAppBar> {
           ),
         ),
         body: _selectedIndex == 0
-            ? const SupervisorHome()
+            ? const AdminHome()
             : _selectedIndex == 1
-                ? const UrgentCalls()
+                ? const ManageAccounts()
                 : _selectedIndex == 2
-                    ? const SupervisorCourses()
+                    ? const Mangeschedual()
                     : More(
+                        extra: RoundButton(
+                            label: Text('Edit profile',style: med_white_bold,),
+                            width: 200,
+                            height: 60,
+                            color: maincolor),
                         data: [
                           {
                             'title': Text(
-                              'Waleed Yousif',
+                              'Abdulrahman Mohammed',
                               style: med_grey_title,
                             ),
                             'icon': const Icon(
@@ -85,7 +94,7 @@ class _SupervisorBottomAppBarState extends State<SupervisorBottomAppBar> {
                           },
                           {
                             'title': Text(
-                              '23356789098',
+                              '22233456785',
                               style: med_grey_title,
                             ),
                             'icon': const Icon(
@@ -96,7 +105,7 @@ class _SupervisorBottomAppBarState extends State<SupervisorBottomAppBar> {
                           },
                           {
                             'title': Text(
-                              'Waleed01@hotmail.com',
+                              'ABDmoh@gmai.com',
                               style: med_grey_title,
                             ),
                             'icon': const Icon(
@@ -106,17 +115,6 @@ class _SupervisorBottomAppBarState extends State<SupervisorBottomAppBar> {
                             )
                           },
                           {
-                            'title': Text(
-                              'Dentist',
-                              style: med_grey_title,
-                            ),
-                            'icon': const Icon(
-                              CupertinoIcons.bag,
-                              size: 40,
-                              color: Colors.black,
-                            )
-                          },
-                           {
                             'title': Row(
                               children: [
                                 Icon(

@@ -1,22 +1,20 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:med_intern/components/main_appbar.dart';
-import 'package:med_intern/components/main_drawer.dart';
+import 'package:med_intern/components/supervisor_drawer.dart';
 import 'package:med_intern/theme/fonts.dart';
 
-class HomeContent extends StatefulWidget {
-  const HomeContent({super.key});
+class AdminHome extends StatefulWidget {
+  const AdminHome({super.key});
 
   @override
-  State<HomeContent> createState() => _HomeContentState();
+  State<AdminHome> createState() => _AdminHomeState();
 }
 
-class _HomeContentState extends State<HomeContent> {
+class _AdminHomeState extends State<AdminHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: PreferredSize(
+      appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80),
         child: MainAppBar(
           showimage: false,
@@ -24,7 +22,7 @@ class _HomeContentState extends State<HomeContent> {
           title: '',
         ),
       ),
-      drawer: MainDrawer(),
+      drawer: SupervisorDrawer(),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Container(
@@ -40,7 +38,7 @@ class _HomeContentState extends State<HomeContent> {
                     style: sub_black_bold,
                   ),
                   Text(
-                    'Ali ',
+                    'Ibrahem ',
                     style: sub_deepgreen_bold,
                   ),
                   Text(

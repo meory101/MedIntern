@@ -72,8 +72,11 @@ class _PasswordRecState extends State<PasswordRec> {
                       Padding(
                         padding: const EdgeInsets.only(left: 20),
                         child: Textform(
-                          suf_icon: Icon(
-                            CupertinoIcons.lock_slash_fill,
+                          suf_icon: IconButton(
+                            icon: Icon(
+                              CupertinoIcons.lock_slash_fill,
+                            ),
+                            onPressed: () {},
                             color: subcolor,
                           ),
                           style: med_deepgreen_bold,
@@ -99,8 +102,11 @@ class _PasswordRecState extends State<PasswordRec> {
                       Padding(
                         padding: const EdgeInsets.only(left: 20),
                         child: Textform(
-                          suf_icon: Icon(
-                            CupertinoIcons.lock_slash_fill,
+                          suf_icon: IconButton(
+                            icon: Icon(
+                              CupertinoIcons.lock_slash_fill,
+                            ),
+                            onPressed: () {},
                             color: subcolor,
                           ),
                           style: med_deepgreen_bold,
@@ -118,9 +124,7 @@ class _PasswordRecState extends State<PasswordRec> {
                       ),
                       Center(
                         child: RecButton(
-                            fun: () {
-                              Navigator.of(context).pushNamed("PasswordRec");
-                            },
+                            fun: () {},
                             label: Text(
                               'Reset Password',
                               style: small_black_title,

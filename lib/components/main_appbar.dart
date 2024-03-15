@@ -3,10 +3,10 @@ import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
 
 class MainAppBar extends StatefulWidget {
-  String title;
-  Color? color;
-  bool? showimage;
-  MainAppBar({super.key, required this.title, this.color, this.showimage});
+ final String title;
+ final Color? color;
+ final bool? showimage;
+  MainAppBar({required this.title, this.color, this.showimage});
   @override
   State<MainAppBar> createState() => _MainAppBarState();
 }
@@ -15,11 +15,12 @@ class _MainAppBarState extends State<MainAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: widget.color ?? maincolor,
+      backgroundColor: widget.color == null ? maincolor : widget.color,
       elevation: 0,
       leading: InkWell(
         onTap: () {
           Scaffold.of(context).openDrawer();
+          ;
         },
         child: Container(
           width: 50,
@@ -27,32 +28,32 @@ class _MainAppBarState extends State<MainAppBar> {
           decoration: BoxDecoration(
             image: DecorationImage(
               image: widget.color != null
-                  ? const AssetImage('assets/images/menu.png')
-                  : const AssetImage('assets/images/wmenu.png'),
+                  ? AssetImage('assets/images/menu.png')
+                  : AssetImage('assets/images/wmenu.png'),
             ),
           ),
         ),
       ),
       title: Container(
-        margin: const EdgeInsets.only(top: 10),
+        margin: EdgeInsets.only(top: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
               height: 80,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 border: Border(
                   left: BorderSide(color: Colors.white, width: 3),
                 ),
               ),
             ),
-            const SizedBox(
+            SizedBox(
               width: 10,
             ),
             Expanded(
               flex: 2,
               child: Text(
-                widget.title,
+                '${widget.title}',
                 style: sub_white_title,
               ),
             ),
@@ -62,22 +63,22 @@ class _MainAppBarState extends State<MainAppBar> {
                   ? Container(
                       width: 20,
                       height: 80,
-                      margin: const EdgeInsets.only(top: 10, right: 6),
+                      margin: EdgeInsets.only(top: 10, right: 6),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        image: const DecorationImage(
+                        image: DecorationImage(
                             image: AssetImage(
                               'assets/images/logo.jpg',
                             ),
                             fit: BoxFit.cover),
                       ),
                     )
-                  : const Text(''),
+                  : Text(''),
             )
           ],
         ),
       ),
-      iconTheme: const IconThemeData(color: Colors.white, size: 50),
+      iconTheme: IconThemeData(color: Colors.white, size: 50),
     );
   }
 }

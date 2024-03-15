@@ -6,7 +6,6 @@ import 'package:med_intern/components/main_drawer.dart';
 import 'package:med_intern/supervisor_pages/course_det.dart';
 import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
-import 'package:med_intern/user_pages/courses_details.dart';
 
 class SupervisorCourses extends StatefulWidget {
   const SupervisorCourses({super.key});

@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:med_intern/components/recbutton.dart';
 import 'package:med_intern/components/textform.dart';
-import 'package:med_intern/user_pages/bottom_app_bar.dart';
-import 'package:med_intern/user_pages/home_content.dart';
 import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
 
-class Signup extends StatefulWidget {
-  const Signup({super.key});
+class LogIn extends StatefulWidget {
+  const LogIn({super.key});
   @override
-  State<Signup> createState() => _SignupState();
+  State<LogIn> createState() => _LogInState();
 }
 
-class _SignupState extends State<Signup> {
-  @override
+class _LogInState extends State<LogIn> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -125,13 +123,7 @@ class _SignupState extends State<Signup> {
                             height: 10,
                           ),
                           RecButton(
-                              fun: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) {
-                                    return HomeContent();
-                                  },
-                                ));
-                              },
+                              fun: () {},
                               label: Text(
                                 'log in',
                                 style: small_black_title,

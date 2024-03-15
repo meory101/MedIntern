@@ -5,7 +5,7 @@ class RecButton extends StatefulWidget {
   final double width;
   final double height;
   final Color color;
-  void Function()? fun;
+ final void Function()? fun;
 
   RecButton(
       {required this.label,
