@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:med_intern/supervisor_pages/supervisor_courses.dart';
 import 'package:med_intern/supervisor_pages/supervisor_home_content.dart';
+import 'package:med_intern/supervisor_pages/urgentcall.dart';
 import 'package:med_intern/user_pages/more.dart';
-import 'package:med_intern/user_pages/urgent_call.dart';
 import 'package:med_intern/theme/fonts.dart';
 
 class SupervisorBottomAppBar extends StatefulWidget {
@@ -67,7 +67,7 @@ class _SupervisorBottomAppBarState extends State<SupervisorBottomAppBar> {
         body: _selectedIndex == 0
             ? const SupervisorHome()
             : _selectedIndex == 1
-                ? const UrgentCalls()
+                ? const SupUrgentCalls()
                 : _selectedIndex == 2
                     ? const SupervisorCourses()
                     : More(

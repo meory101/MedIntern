@@ -36,8 +36,8 @@ class _SupervisorCourseDetState extends State<SupervisorCourseDet> {
     List<String> routes = [
       'superannounc',
       'supcoursecontent',
-      'superannounc',
-      'superannounc',
+      'grade',
+      'Attendance',
     ];
     return Scaffold(
       drawer: const MainDrawer(),

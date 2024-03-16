@@ -1,35 +1,31 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
- import 'package:med_intern/components/textform.dart';
+import 'package:med_intern/components/main_appbar.dart';
+import 'package:med_intern/components/main_drawer.dart';
+import 'package:med_intern/components/textform.dart';
 import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
 
-class ManageAccounts extends StatefulWidget {
-  const ManageAccounts({super.key});
+class interngrades extends StatefulWidget {
+  const interngrades({super.key});
 
   @override
-  State<ManageAccounts> createState() => _ManageAccountsState();
+  State<interngrades> createState() => _interngradesState();
 }
 
-class _ManageAccountsState extends State<ManageAccounts> {
+class _interngradesState extends State<interngrades> {
+  TextEditingController search = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    DeleteAccount() {
-      AwesomeDialog(
-        context: context,
-        dialogType: DialogType.warning,
-        animType: AnimType.rightSlide,
-        title: 'Delete message',
-        desc: 'Are you sure you want to delete this account?',
-        btnOkColor: maincolor,
-        btnCancelColor: Colors.red,
-        btnOkOnPress: () {},
-        btnCancelOnPress: () {},
-      ).show();
-    }
-
-    TextEditingController search = TextEditingController();
     return Scaffold(
+      drawer: const MainDrawer(),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(80),
+        child: MainAppBar(
+          title: 'Childhood diseases',
+        ),
+      ),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Container(
@@ -37,15 +33,6 @@ class _ManageAccountsState extends State<ManageAccounts> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                width: double.infinity,
-                alignment: Alignment.topLeft,
-                child: Image.asset(
-                  'assets/images/logo.jpg',
-                  fit: BoxFit.cover,
-                  width: 80,
-                ),
-              ),
               Container(
                 margin: const EdgeInsets.only(bottom: 40, top: 20),
                 width: double.infinity,
@@ -55,7 +42,7 @@ class _ManageAccountsState extends State<ManageAccounts> {
                   ),
                 ),
                 child: Text(
-                  'Manage Account',
+                  'intern Grades',
                   style: sub_deepgreen_bold,
                 ),
               ),
@@ -150,44 +137,13 @@ class _ManageAccountsState extends State<ManageAccounts> {
                               child: Column(
                                 children: [
                                   Text(
-                                    'edit',
+                                    'Grade',
                                     style: small_dark_grey_title,
                                   ),
-                                  IconButton(
-                                    onPressed: () {
-                                      Navigator.of(context)
-                                          .pushNamed('editaccount');
-                                    },
-                                    icon: CircleAvatar(
-                                      backgroundColor: subcolor,
-                                      child: const Icon(
-                                        Icons.edit,
-                                        color: Colors.white,
-                                      ),
-                                    ),
+                                  const SizedBox(
+                                    height: 13,
                                   ),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Column(
-                                children: [
-                                  Text(
-                                    'delete',
-                                    style: small_dark_grey_title,
-                                  ),
-                                  IconButton(
-                                    onPressed: DeleteAccount,
-                                    icon: const CircleAvatar(
-                                      backgroundColor:
-                                          Color.fromARGB(255, 118, 27, 21),
-                                      child: Icon(
-                                        Icons.delete,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
+                                  Text("95/100")
                                 ],
                               ),
                             ),

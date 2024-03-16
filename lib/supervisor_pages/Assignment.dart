@@ -7,14 +7,14 @@ import 'package:med_intern/components/main_drawer.dart';
 import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
 
-class CourseMaterial extends StatefulWidget {
-  const CourseMaterial({super.key});
+class Assignment extends StatefulWidget {
+  const Assignment({super.key});
 
   @override
-  State<CourseMaterial> createState() => _CourseMaterialState();
+  State<Assignment> createState() => _AssignmentState();
 }
 
-class _CourseMaterialState extends State<CourseMaterial> {
+class _AssignmentState extends State<Assignment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,16 +43,21 @@ class _CourseMaterialState extends State<CourseMaterial> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Course Content',
+                        'Assignment',
                         style: sub_green_bold,
                       ),
                       InkWell(
                         onTap: () {},
                         child: Container(
                           color: maincolor,
-                          child: const Icon(
-                            Icons.add,
-                            color: Colors.white,
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.of(context).pushNamed("addAssignment");
+                            },
+                            child: const Icon(
+                              Icons.add,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
@@ -82,7 +87,7 @@ class _CourseMaterialState extends State<CourseMaterial> {
                                         width: 20,
                                       ),
                                       Text(
-                                        'chapter ${index+1}',
+                                        'Assignment ${index+1}',
                                         style: med_white_bold,
                                       ),
                                     ],
@@ -101,7 +106,7 @@ class _CourseMaterialState extends State<CourseMaterial> {
                                         animType: AnimType.rightSlide,
                                         title: 'Delete message',
                                         desc:
-                                            'Are you sure you want to delete this content?',
+                                            'Are you sure you want to delete this assignment?',
                                         btnOkColor: maincolor,
                                         btnCancelColor: Colors.red,
                                         btnOkOnPress: () {},
