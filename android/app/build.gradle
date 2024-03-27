@@ -25,7 +25,7 @@ if (flutterVersionName == null) {
 android {
     namespace "com.example.med_intern"
     compileSdkVersion flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
+        ndkVersion "25.1.8937393"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -45,7 +45,7 @@ android {
         applicationId "com.example.med_intern"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion flutter.minSdkVersion
+        minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -64,4 +64,11 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    configurations.all {
+    resolutionStrategy {
+        force 'com.squareup.okhttp:okhttp:2.7.5'
+        force 'com.squareup.okio:okio:1.17.5'
+    }
+}
+}

@@ -23,7 +23,7 @@ class _AdminbottomappbarState extends State<Adminbottomappbar> {
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: Container(
-          margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+          margin:  EdgeInsets.symmetric(vertical: 8, horizontal: 5),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               border: Border.all(color: Colors.grey)),

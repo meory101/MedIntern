@@ -43,6 +43,7 @@ class Textform extends StatelessWidget {
             BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 7)
           ]),
       child: TextFormField(
+        
           obscuringCharacter: '*',
           style: style,
           cursorColor: subcolor,

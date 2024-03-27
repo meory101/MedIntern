@@ -1,9 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:med_intern/Admin_pages/Admin_bottom_appbar.dart';
 import 'package:med_intern/Admin_pages/editaccount.dart';
 import 'package:med_intern/Admin_pages/mangeschedual.dart';
 import 'package:med_intern/Admin_pages/rotation.dart';
+import 'package:med_intern/register%20(2).dart';
 import 'package:med_intern/supervisor_pages/Assignment.dart';
 import 'package:med_intern/supervisor_pages/addAssignmemt.dart';
 import 'package:med_intern/supervisor_pages/announcment.dart';
@@ -33,13 +35,48 @@ import 'package:med_intern/auth_pages/reset_code.dart';
 import 'package:med_intern/auth_pages/reset_password.dart';
 import 'package:med_intern/user_pages/urgent_call.dart';
 import 'package:med_intern/user_pages/view_attendance.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+SharedPreferences? prefs;
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: FirebaseOptions(
+        apiKey: "AIzaSyA-phM3cvU3pbLRfMrsqavx3o9uck_g_nA",
+        appId: "1:694621040839:android:9b9fb31ac36fc23f038ee2",
+        messagingSenderId: "694621040839",
+        projectId: "medi-deb3a"),
+  );
+  prefs = await SharedPreferences.getInstance();
+
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  String ?role ;
+  @override
+  void initState() {
+    if (prefs!.getString('role') != null) {
+      if (prefs!.getString('role') == "0") {
+        role = "user";
+      }
+      else  if (prefs!.getString('role') == "1") {
+        role = "admin";
+      }
+          else if (prefs!.getString('role') == "2") {
+        role = "super";
+      }
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,10 +86,10 @@ class MyApp extends StatelessWidget {
       // home:LogIn(),
 
       //user
-      // home: CustomBottomAppBar(),
+      home: role =="user" ? BottomAppBar():role == "admin" ? Adminbottomappbar():role =="super"?SupervisorBottomAppBar(): Register(),
 
       //admin
-      home: Adminbottomappbar(),
+      // home: Adminbottomappbar(),
 
       //supervisor
       // home: SupervisorBottomAppBar(),
