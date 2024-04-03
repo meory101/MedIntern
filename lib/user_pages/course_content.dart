@@ -24,13 +24,34 @@ class _course_contentState extends State<course_content> {
             title: 'Courses content',
           )),
       body: Container(
-        margin: EdgeInsets.only(top: 40),
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        margin: EdgeInsets.only(top: 25),
         child: ListView.builder(
-          itemCount: 1,
+          itemCount: 2,
           itemBuilder: (context, index) {
-            return InkWell(
-              child: Column(
+            return 
+            index ==0? Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Text(
+                    'Course Content',
+                    style: sub_black_title,
+                  ),
+                  Text(
+                    'course lessons and assements ..!',
+                    style: small_grey_title,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                ],
+              ):
+            
+            InkWell(
+              child: Column(
+                
+                children: [
+                  SizedBox(height: 40,),
                   InkWell(
                     onTap: () {
                       Navigator.of(context).pushNamed('courselessons');
@@ -40,12 +61,17 @@ class _course_contentState extends State<course_content> {
                       icon: Icon(
                         CupertinoIcons.doc,
                         color: subcolor,
-                        size: 40,
+                        size: 25,
                       ),
                       title: Text(
                         'Course lessons',
-                        style: sub_white_title,
+                        style: small_white_title,
                       ),
+                                            subtitle: Text(
+                        'click here',
+                        style: esmall_dark_grey_title,
+                      ),
+
                     ),
                   ),
                   SizedBox(
@@ -60,12 +86,14 @@ class _course_contentState extends State<course_content> {
                       icon: Icon(
                         CupertinoIcons.doc_checkmark,
                         color: subcolor,
-                        size: 40,
+                        size: 25,
                       ),
                       title: Text(
                         'Assements',
-                        style: sub_white_title,
+                        style: small_white_title,
+
                       ),
+                      subtitle: Text('click here',style: esmall_dark_grey_title,),
                     ),
                   ),
                 ],

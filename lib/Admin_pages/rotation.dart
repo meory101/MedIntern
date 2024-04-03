@@ -66,7 +66,6 @@ class _RotationState extends State<Rotation> {
                       width: 20,
                     ),
                     DropdownButton<String>(
-                      dropdownColor: light_box_color,
                       elevation: 30,
                       style: (med_black_title),
                       value: selecteditems,
@@ -98,7 +97,6 @@ class _RotationState extends State<Rotation> {
                       width: 20,
                     ),
                     DropdownButton<String>(
-                      dropdownColor: light_box_color,
                       elevation: 30,
                       style: (med_black_title),
                       value: selecteditems1,
@@ -130,7 +128,6 @@ class _RotationState extends State<Rotation> {
                       width: 20,
                     ),
                     DropdownButton<String>(
-                      dropdownColor: light_box_color,
                       elevation: 30,
                       style: (med_black_title),
                       value: selecteditems2,
@@ -162,7 +159,6 @@ class _RotationState extends State<Rotation> {
                       width: 20,
                     ),
                     DropdownButton<String>(
-                      dropdownColor: light_box_color,
                       elevation: 30,
                       style: (med_black_title),
                       value: selecteditems3,

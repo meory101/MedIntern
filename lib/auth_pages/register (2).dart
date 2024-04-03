@@ -1,5 +1,7 @@
+
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:med_intern/Admin_pages/Admin_bottom_appbar.dart';
+import 'package:med_intern/auth_pages/login.dart';
 import 'package:med_intern/components/recbutton.dart';
 import 'package:med_intern/components/textform.dart';
 import 'package:med_intern/main.dart';
@@ -32,7 +34,7 @@ class _RegisterState extends State<Register> {
           children: [
             Container(
               margin: EdgeInsets.only(top: 50),
-              height: MediaQuery.of(context).size.height / 7,
+              height: MediaQuery.of(context).size.height / 8,
               width: double.infinity,
               decoration: const BoxDecoration(
                 image: DecorationImage(
@@ -55,7 +57,7 @@ class _RegisterState extends State<Register> {
                   Center(
                       child: Text(
                     "Signup",
-                    style: main_deepgreen_title,
+                    style: med_deepgreen_bold,
                   )),
                   const SizedBox(
                     height: 10,
@@ -64,7 +66,7 @@ class _RegisterState extends State<Register> {
                     padding: const EdgeInsets.only(bottom: 8),
                     child: Text(
                       'UserName',
-                      style: sub_deepgreen_title,
+                      style: small_deepgreen_title,
                     ),
                   ),
                   Padding(
@@ -86,7 +88,7 @@ class _RegisterState extends State<Register> {
                       padding: const EdgeInsets.only(bottom: 8),
                       child: Text(
                         'Email',
-                        style: sub_deepgreen_title,
+                        style: small_deepgreen_title,
                       )),
                   Padding(
                     padding: const EdgeInsets.only(left: 20),
@@ -107,7 +109,7 @@ class _RegisterState extends State<Register> {
                     padding: const EdgeInsets.only(bottom: 8),
                     child: Text(
                       'Password',
-                      style: sub_deepgreen_title,
+                      style: small_deepgreen_title,
                     ),
                   ),
                   Padding(
@@ -125,70 +127,52 @@ class _RegisterState extends State<Register> {
                   const SizedBox(
                     height: 30,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            selectedtype = 0;
-                          });
-                        },
-                        child: RecButton(
-                          color: selectedtype == 0 ? maincolor : Colors.white,
-                          label: Text(
-                            'User',
-                            style: selectedtype == 0
-                                ? small_deepgreen_title
-                                : small_black_title,
+                  Align(
+                    alignment: Alignment.center,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              selectedtype = 0;
+                            });
+                          },
+                          child: RecButton(
+                            color: selectedtype == 0 ? maincolor : Colors.white,
+                            label: Text(
+                              'User',
+                              style: selectedtype == 0
+                                  ? small_deepgreen_title
+                                  : small_black_title,
+                            ),
+                            width: 80,
+                            height: 40,
                           ),
-                          width: 80,
-                          height: 40,
                         ),
-                      ),
-                      const SizedBox(
-                        width: 50,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            selectedtype = 1;
-                          });
-                        },
-                        child: RecButton(
-                          label: Text(
-                            'Admin',
-                            style: selectedtype == 1
-                                ? small_deepgreen_title
-                                : small_black_title,
+                        const SizedBox(
+                          width: 50,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              selectedtype = 2;
+                            });
+                          },
+                          child: RecButton(
+                            label: Text(
+                              'supervisor',
+                              style: selectedtype == 2
+                                  ? small_deepgreen_title
+                                  : small_black_title,
+                            ),
+                            color: selectedtype == 2 ? maincolor : Colors.white,
+                            width: 80,
+                            height: 40,
                           ),
-                          color: selectedtype == 1 ? maincolor : Colors.white,
-                          width: 80,
-                          height: 40,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 40,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            selectedtype = 2;
-                          });
-                        },
-                        child: RecButton(
-                          label: Text(
-                            'supervisor',
-                            style: selectedtype == 2
-                                ? small_deepgreen_title
-                                : small_black_title,
-                          ),
-                          color: selectedtype == 2 ? maincolor : Colors.white,
-                          width: 80,
-                          height: 40,
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 50,
@@ -202,11 +186,12 @@ class _RegisterState extends State<Register> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "ALready have Account? ",
+                                "Already have Account? ",
                               ),
                               InkWell(
                                   onTap: () {
-                                    Navigator.of(context).pushNamed("login");
+                                    Navigator.of(context)
+                                        .pushReplacementNamed("login");
                                   },
                                   child: Text(
                                     "login",
@@ -226,41 +211,30 @@ class _RegisterState extends State<Register> {
                                     .collection('users')
                                     .add({
                                   "name": "${username.text}",
-                                  "email": "${emailController.text}",
-                                  "password": "${passwordController.text}",
-                                  "roleid": selectedtype == 0
-                                      ? "user"
-                                      : selectedtype == 1
-                                          ? "admin"
-                                          : "super"
+                                  "email": "${emailController.text}".replaceAll(" ", ""),
+                                  "password": "${passwordController.text}".replaceAll(" ", ""),
+                                  "status": "0",
+                                  "roleid": selectedtype == 0 ? "user" : "supervisor"
                                 }).then((_) {
+                                  AwesomeDialog(
+                                    context: context,
+                                    dialogType: DialogType.warning,
+                                    animType: AnimType.rightSlide,
+                                    desc: 'Please wait until admin accepts you',
+                                  )..show();
+
                                   if (selectedtype == 0) {
-                                    prefs!.setString("role", "${0}");
-                                    Navigator.of(context)
-                                        .push(MaterialPageRoute(
-                                      builder: (context) {
-                                        return BottomAppBar();
-                                      },
-                                    ));
+                                    print('kk');
+                                    prefs!.setString("role", "user");
                                   } else if (selectedtype == 1) {
-                                    prefs!.setString("role", "${1}");
-
-                                    Navigator.of(context)
-                                        .push(MaterialPageRoute(
-                                      builder: (context) {
-                                        return Adminbottomappbar();
-                                      },
-                                    ));
-                                  } else {
-                                    prefs!.setString("role", "${2}");
-
-                                    Navigator.of(context)
-                                        .push(MaterialPageRoute(
-                                      builder: (context) {
-                                        return Adminbottomappbar();
-                                      },
-                                    ));
+                                    prefs!.setString("role", "super");
                                   }
+                                  Future.delayed(Duration(milliseconds: 1000));
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) {
+                                      return LogIn();
+                                    },
+                                  ));
                                 }).catchError((_) {
                                   print("an error occured");
                                 });

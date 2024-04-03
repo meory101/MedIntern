@@ -8,6 +8,7 @@ import 'package:med_intern/Admin_pages/manage_account.dart';
 import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
 import 'package:med_intern/user_pages/more.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class Adminbottomappbar extends StatefulWidget {
   const Adminbottomappbar({super.key});
@@ -23,51 +24,61 @@ class _AdminbottomappbarState extends State<Adminbottomappbar> {
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: Container(
-          margin:  EdgeInsets.symmetric(vertical: 8, horizontal: 5),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Colors.grey)),
-          height: 80,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: [
-              GNav(
-                selectedIndex: _selectedIndex,
-                onTabChange: (value) {
-                  setState(() {
-                    _selectedIndex = value;
-                  });
-                },
-                tabs: [
-                  GButton(
-                    iconSize: 40,
-                    icon: Icons.home_filled,
-                    text: 'Home',
-                    textStyle: sub_black_bold,
-                  ),
-                  GButton(
-                    iconSize: 40,
-                    icon: Icons.manage_accounts_rounded,
-                    text: 'Mange Account',
-                    textStyle: sub_black_bold,
-                  ),
-                  GButton(
-                    iconSize: 40,
-                    icon: Icons.calendar_month_rounded,
-                    text: 'Schedule',
-                    textStyle: sub_black_bold,
-                  ),
-                  GButton(
-                    iconSize: 40,
-                    icon: Icons.person_2_outlined,
-                    text: 'More',
-                    textStyle: sub_black_bold,
-                  )
-                ],
-              ),
-            ],
-          ),
-        ),
+            margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+            // decoration: BoxDecoration(
+            // borderRadius: BorderRadius.circular(10),
+            // border: Border.all(color: Colors.grey)),
+            height: 80,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                SalomonBottomBar(
+                    itemPadding:
+                        EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+                    unselectedItemColor: Colors.black87.withOpacity(0.7),
+                    curve: Curves.linear,
+                    selectedItemColor: light_box_color,
+                    duration: Duration(seconds: 1),
+                    // backgroundColor: ,
+                    // selectedColorOpacity: ,
+                    currentIndex: _selectedIndex,
+                    onTap: (i) => setState(() => _selectedIndex = i),
+                    items: [
+                      SalomonBottomBarItem(
+                        icon: Icon(Icons.home, size: 25),
+                        title: Text("Home"),
+                        selectedColor: maincolor,
+                      ),
+                      // SalomonBottomBarItem(
+                      //   icon: Icon(
+                      //     Icons.notifications_active,
+                      //     size: 25,
+                      //   ),
+                      //   title: Text("Urgetnt calls"),
+                      //   selectedColor: maincolor,
+                      // ),
+                      SalomonBottomBarItem(
+                        icon: Icon(Icons.manage_accounts, size: 25),
+                        title: Text("mange Accounts"),
+                        selectedColor: maincolor,
+                      ),
+                      SalomonBottomBarItem(
+                        icon: Icon(
+                          Icons.date_range_rounded,
+                          size: 25,
+                        ),
+                        title: Text("mange Schedual"),
+                        selectedColor: maincolor,
+                      ),
+
+                      SalomonBottomBarItem(
+                        icon: Icon(Icons.person, size: 25),
+                        title: Text("Profile"),
+                        selectedColor: maincolor,
+                      ),
+                    ]),
+              ],
+            )),
         body: _selectedIndex == 0
             ? const AdminHome()
             : _selectedIndex == 1
@@ -75,69 +86,64 @@ class _AdminbottomappbarState extends State<Adminbottomappbar> {
                 : _selectedIndex == 2
                     ? const Mangeschedual()
                     : More(
-                        extra: RoundButton(
-                            label: Text('Edit profile',style: med_white_bold,),
-                            width: 200,
-                            height: 60,
-                            color: maincolor),
                         data: [
                           {
                             'title': Text(
-                              'Abdulrahman Mohammed',
-                              style: med_grey_title,
+                              'Jamal almasri',
+                              style: small_grey_title,
                             ),
                             'icon': const Icon(
                               Icons.person_2_outlined,
-                              size: 40,
-                              color: Colors.black,
+                              size: 25,
+                              color: Colors.white,
                             )
                           },
                           {
                             'title': Text(
                               '22233456785',
-                              style: med_grey_title,
+                              style: small_grey_title,
                             ),
                             'icon': const Icon(
                               Icons.medical_services,
-                              size: 40,
-                              color: Colors.black,
+                              size: 25,
+                              color: Colors.white,
                             )
                           },
                           {
                             'title': Text(
-                              'ABDmoh@gmai.com',
-                              style: med_grey_title,
+                              'jamal.masri@hotmail.com',
+                              style: small_grey_title,
                             ),
                             'icon': const Icon(
                               Icons.mail,
-                              size: 40,
-                              color: Colors.black,
-                            )
+                              size: 25,
+                              color: Colors.white,
+                            ),
                           },
-                          {
+                          const {
                             'title': Row(
                               children: [
                                 Icon(
                                   Icons.password,
                                   color: Colors.grey,
-                                  size: 40,
+                                  size: 25,
                                 ),
                                 Icon(
                                   Icons.password,
                                   color: Colors.grey,
-                                  size: 40,
+                                  size: 25,
                                 ),
                                 Icon(
                                   Icons.password,
                                   color: Colors.grey,
-                                  size: 40,
+                                  size: 25,
                                 ),
                               ],
                             ),
                             'icon': Icon(
                               Icons.key_off,
-                              size: 40,
-                              color: Colors.black,
+                              size: 25,
+                              color: Colors.white,
                             )
                           },
                         ],

@@ -5,7 +5,8 @@ import 'package:med_intern/Admin_pages/Admin_bottom_appbar.dart';
 import 'package:med_intern/Admin_pages/editaccount.dart';
 import 'package:med_intern/Admin_pages/mangeschedual.dart';
 import 'package:med_intern/Admin_pages/rotation.dart';
-import 'package:med_intern/register%20(2).dart';
+import 'package:med_intern/auth_pages/login.dart';
+import 'package:med_intern/auth_pages/register%20(2).dart';
 import 'package:med_intern/supervisor_pages/Assignment.dart';
 import 'package:med_intern/supervisor_pages/addAssignmemt.dart';
 import 'package:med_intern/supervisor_pages/announcment.dart';
@@ -17,6 +18,7 @@ import 'package:med_intern/supervisor_pages/interntGrades.dart';
 import 'package:med_intern/supervisor_pages/nexturgentcall.dart';
 import 'package:med_intern/supervisor_pages/supervisor_bottom_appbar.dart';
 import 'package:med_intern/supervisor_pages/tryagain.dart';
+import 'package:med_intern/accept_account.dart';
 import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/user_pages/announcment.dart';
 import 'package:med_intern/user_pages/assesments.dart';
@@ -37,6 +39,19 @@ import 'package:med_intern/user_pages/urgent_call.dart';
 import 'package:med_intern/user_pages/view_attendance.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+extension IsEmail on String {
+  CheckEmail() {
+    return RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(this);
+  }
+}
+
+extension Password on String {
+  bool IsPassword() {
+    return this.length < 6;
+  }
+}
 SharedPreferences? prefs;
 
 void main() async {
@@ -61,17 +76,16 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String ?role ;
+  String? role;
   @override
   void initState() {
     if (prefs!.getString('role') != null) {
-      if (prefs!.getString('role') == "0") {
+      print(prefs!.getString('role'));
+      if (prefs!.getString('role') == "user") {
         role = "user";
-      }
-      else  if (prefs!.getString('role') == "1") {
+      } else if (prefs!.getString('role') == "admin") {
         role = "admin";
-      }
-          else if (prefs!.getString('role') == "2") {
+      } else if (prefs!.getString('role') == "super") {
         role = "super";
       }
     }
@@ -86,6 +100,7 @@ class _MyAppState extends State<MyApp> {
       // home:LogIn(),
 
       //user
+      // home: Register(),
       home: role =="user" ? BottomAppBar():role == "admin" ? Adminbottomappbar():role =="super"?SupervisorBottomAppBar(): Register(),
 
       //admin
@@ -97,6 +112,7 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.light(primary: maincolor),
       ),
       routes: {
+        "login": (context) => LogIn(),
         "resetpassword": (context) => Resetpassword(),
         "resetcode": (context) => ResetCode(),
         "PasswordRec": (context) => PasswordRec(),

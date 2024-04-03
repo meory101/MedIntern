@@ -17,46 +17,27 @@ class _UrgentCallsState extends State<UrgentCalls> {
   List<Text> titles = [
     Text(
       'Dr.khalid',
-      style: med_black_title,
+      style: med_white_title,
     ),
     Text(
       'Dr.khalid',
-      style: med_black_title,
+      style: med_white_title,
     ),
   ];
   List<Widget> subtitles = [
     Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
-          height: 20,
-        ),
         Text(
           'Patient 2920 lab work',
           style: small_grey_title,
         ),
-        SizedBox(
-          height: 20,
-        ),
         Container(
-          height: 30,
+          // height: 30,
           decoration: BoxDecoration(
             color: Colors.white,
             boxShadow: [
               BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 7)
-            ],
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                '20-11-2023',
-                style: small_dark_grey_title,
-              ),
-              Text(
-                '9:37am',
-                style: small_dark_grey_title,
-              ),
             ],
           ),
         )
@@ -65,38 +46,82 @@ class _UrgentCallsState extends State<UrgentCalls> {
     Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
-          height: 20,
-        ),
         Text(
           'ER room 2',
           style: small_grey_title,
         ),
-        SizedBox(
-          height: 20,
-        ),
         Container(
-          height: 30,
           decoration: BoxDecoration(
             color: Colors.white,
             boxShadow: [
               BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 7)
             ],
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                '19-11-2023',
-                style: small_dark_grey_title,
-              ),
-              Text(
-                '10:02am',
-                style: small_dark_grey_title,
-              ),
-            ],
-          ),
         )
+      ],
+    ),
+  ];
+  var date = [
+    Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Row(
+          children: [
+            Icon(
+              Icons.calendar_month,
+              color: Colors.red,
+              size: 19,
+            ),
+            Text(
+              '20-11-2023',
+              style: esmall_dark_grey_title,
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Icon(
+              CupertinoIcons.clock,
+              color: Colors.red,
+              size: 19,
+            ),
+            Text(
+              '9:37am',
+              style: esmall_dark_grey_title,
+            ),
+          ],
+        ),
+      ],
+    ),
+    Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Row(
+          children: [
+            Icon(
+              Icons.calendar_month,
+              color: Colors.red,
+              size: 19,
+            ),
+            Text(
+              '19-11-2023',
+              style: esmall_dark_grey_title,
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Icon(
+              CupertinoIcons.clock,
+              color: Colors.red,
+              size: 19,
+            ),
+            Text(
+              '10:02am',
+              style: esmall_dark_grey_title,
+            ),
+          ],
+        ),
       ],
     ),
   ];
@@ -104,7 +129,7 @@ class _UrgentCallsState extends State<UrgentCalls> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const MainDrawer(),
+      // drawer: const MainDrawer(),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80),
         child: MainAppBar(
@@ -115,17 +140,25 @@ class _UrgentCallsState extends State<UrgentCalls> {
         itemCount: 2,
         itemBuilder: (context, index) {
           return Container(
-            height: 100,
-            margin: const EdgeInsets.only(bottom: 60),
-            child: CustomListTile(
-              color: Colors.transparent,
-              icon: Icon(
-                Icons.notifications_active,
-                size: 40,
-                color: subcolor,
-              ),
-              title: titles[index],
-              subtitle: subtitles[index],
+            // height: 100,
+            margin: const EdgeInsets.only(top: 30),
+            child: Column(
+              children: [
+                CustomListTile(
+                  color: Colors.transparent,
+                  icon: Icon(
+                    Icons.notifications_active,
+                    size: 25,
+                    color: subcolor,
+                  ),
+                  title: titles[index],
+                  subtitle: subtitles[index],
+                ),
+                SizedBox(
+                  height: 4,
+                ),
+                date[index]
+              ],
             ),
           );
         },

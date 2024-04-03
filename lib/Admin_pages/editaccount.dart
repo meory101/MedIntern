@@ -107,14 +107,14 @@ class _EditAccountState extends State<EditAccount> {
                     Row(
                       children: [
                         Expanded(
-                          flex: 1,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "First Name ",
-                              style: med_green_title,
-                          ),)
-                        ),
+                            flex: 1,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                "First Name ",
+                                style: small_black_title,
+                              ),
+                            )),
                         Expanded(
                           flex: 2,
                           child: Textform2(
@@ -135,11 +135,11 @@ class _EditAccountState extends State<EditAccount> {
                         Expanded(
                           flex: 1,
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "Last Name ",
-                              style: med_green_title,)
-                          ),
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                "Last Name ",
+                                style: small_black_title,
+                              )),
                         ),
                         Expanded(
                             flex: 2, child: Textform2(controller: lastname))
@@ -160,13 +160,12 @@ class _EditAccountState extends State<EditAccount> {
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               "ID Number  ",
-                              style: med_green_title,
+                              style: small_black_title,
+                            ),
                           ),
-                        ),),
+                        ),
                         Expanded(
-                          flex: 2,
-                          child: Textform2(controller: idnumber))
-                        
+                            flex: 2, child: Textform2(controller: idnumber))
                       ],
                     )
                   ],
@@ -184,9 +183,10 @@ class _EditAccountState extends State<EditAccount> {
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               "Mobile Number",
-                              style: med_green_title,
+                              style: small_black_title,
+                            ),
                           ),
-                        ),),
+                        ),
                         Expanded(
                           flex: 2,
                           child: Textform2(controller: Mobilenumber),
@@ -208,9 +208,10 @@ class _EditAccountState extends State<EditAccount> {
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               "Email            ",
-                              style: med_green_title,
+                              style: small_black_title,
+                            ),
                           ),
-                        ),),
+                        ),
                         Expanded(
                           flex: 2,
                           child: Textform2(controller: Email),
@@ -232,9 +233,10 @@ class _EditAccountState extends State<EditAccount> {
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               "Password",
-                              style: med_green_title,
+                              style: small_black_title,
+                            ),
                           ),
-                        ),),
+                        ),
                         Expanded(
                           flex: 2,
                           child: Textform2(controller: password),
@@ -255,9 +257,9 @@ class _EditAccountState extends State<EditAccount> {
                           RecButton(
                               label: Text(
                                 "Cancel",
-                                style: med_green_title,
+                                style: small_black_title,
                               ),
-                               width: 100,
+                              width: 100,
                               height: 40,
                               color: Colors.white),
                           SizedBox(
@@ -266,7 +268,7 @@ class _EditAccountState extends State<EditAccount> {
                           RecButton(
                               label: Text(
                                 "update",
-                                style: med_white_title,
+                                style: small_black_title,
                               ),
                               width: 100,
                               height: 40,

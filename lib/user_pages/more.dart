@@ -18,7 +18,7 @@ class _MoreState extends State<More> {
     GlobalKey<ScaffoldState> key = GlobalKey();
     return Scaffold(
       key: key,
-      drawer: const MainDrawer(),
+      // drawer: const MainDrawer(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Stack(
@@ -30,28 +30,12 @@ class _MoreState extends State<More> {
                 height: MediaQuery.of(context).size.height / 6,
                 decoration: BoxDecoration(color: maincolor),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    InkWell(
-                      onTap: () {
-                        key.currentState!.openDrawer();
-                      },
-                      child: Container(
-                        width: 50,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('assets/images/wmenu.png'),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 30,
-                    ),
                     Text(
                       'my profile',
                       style: sub_white_bold,
+                      textAlign: TextAlign.center,
                     )
                   ],
                 ),
@@ -72,26 +56,32 @@ class _MoreState extends State<More> {
                   ),
                   child: CircleAvatar(
                     backgroundColor: maincolor,
+                    backgroundImage: AssetImage('assets/images/person.jpg'),
                     radius: 60,
-                    child: const Icon(
-                      Icons.person_2_outlined,
-                      size: 60,
-                      color: Colors.white,
-                    ),
                   ),
                 ),
               ),
               Container(
+                padding: EdgeInsets.symmetric(horizontal: 10),
                 margin: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height / 6 + 100),
+                    top: MediaQuery.of(context).size.height / 6 + 100,
+                    bottom: 30),
                 height: MediaQuery.of(context).size.height / 2,
                 child: ListView.builder(
                   itemCount: widget.data.length,
                   itemBuilder: (context, index) {
-                    return CustomListTile(
-                        icon: widget.data[index]['icon'],
-                        title: widget.data[index]['title'],
-                        color: Colors.transparent);
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 3,
+                        ),
+                        CustomListTile(
+                            icon: widget.data[index]['icon'],
+                            title: widget.data[index]['title'],
+                            color: Colors.transparent),
+                      ],
+                    );
                   },
                 ),
               ),

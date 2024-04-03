@@ -43,20 +43,25 @@ class Textform extends StatelessWidget {
             BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 7)
           ]),
       child: TextFormField(
-        
+          validator: val??val,
           obscuringCharacter: '*',
           style: style,
           cursorColor: subcolor,
           controller: controller,
           keyboardType: textInputType,
           obscureText: obscure,
+          
           decoration: InputDecoration(
+            
             prefixIcon: pre_icon,
             suffixIcon:suf_icon ,
             hintStyle: small_grey_title,
             hintText: text,
             border: InputBorder.none,
-          )),
+            // errorBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.red))
+          ),
+          
+          ),
     );
   }
 }

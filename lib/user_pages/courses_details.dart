@@ -7,7 +7,6 @@ import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
 
 class CourseDet extends StatefulWidget {
-
   @override
   State<CourseDet> createState() => _CourseDetState();
 }
@@ -18,41 +17,41 @@ class _CourseDetState extends State<CourseDet> {
     List<Text> titles = [
       Text(
         'Announcments',
-        style: sub_white_title,
+        style: med_white_title,
       ),
       Text(
         'Grades',
-        style: sub_white_title,
+        style: med_white_title,
       ),
       Text(
         'Course content',
-        style: sub_white_title,
+        style: med_white_title,
       ),
       Text(
         'Dr.Khaled',
-        style: sub_white_title,
+        style: med_white_title,
       ),
     ];
     List<Icon> icons = [
       Icon(
         Icons.barcode_reader,
         color: subcolor,
-        size: 40,
+        size: 25,
       ),
       Icon(
         CupertinoIcons.star_circle_fill,
         color: subcolor,
-        size: 40,
+        size: 25,
       ),
       Icon(
         Icons.menu_book_sharp,
         color: subcolor,
-        size: 40,
+        size: 25,
       ),
       Icon(
         CupertinoIcons.person_crop_circle_fill,
         color: subcolor,
-        size: 40,
+        size: 25,
       ),
     ];
     List<String> routes = [
@@ -70,23 +69,47 @@ class _CourseDetState extends State<CourseDet> {
         ),
       ),
       body: Container(
-        margin: const EdgeInsets.only(top: 40),
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        margin: const EdgeInsets.only(top: 25),
         child: ListView.builder(
-          itemCount: 4,
+          itemCount: 5,
           itemBuilder: (context, index) {
-            return InkWell(
-              onTap: () {
-                Navigator.of(context).pushNamed('${routes[index]}');
-              },
-              child: Container(
-                margin: const EdgeInsets.only(bottom: 20),
-                child: CustomListTile(
-                  color: light_box_color,
-                  icon: icons[index],
-                  title: titles[index],
+            if (index == 0) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Course Details',
+                    style: sub_black_title,
+                  ),
+                  Text(
+                    'all course details here!',
+                    style: small_grey_title,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                ],
+              );
+            } else {
+              return InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed('${routes[index-1]}');
+                },
+                child: Container(
+                  margin: const EdgeInsets.only(bottom: 20),
+                  child: CustomListTile(
+                    color: light_box_color,
+                    icon: icons[index - 1],
+                    title: titles[index - 1],
+                    subtitle: Text(
+                      'click here',
+                      style: esmall_dark_grey_title,
+                    ),
+                  ),
                 ),
-              ),
-            );
+              );
+            }
           },
         ),
       ),

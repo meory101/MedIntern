@@ -1,6 +1,9 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
- import 'package:med_intern/components/textform.dart';
+import 'package:med_intern/Admin_pages/create_Account.dart';
+import 'package:med_intern/accept_account.dart';
+import 'package:med_intern/components/recbutton.dart';
+import 'package:med_intern/components/textform.dart';
 import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
 
@@ -92,7 +95,7 @@ class _ManageAccountsState extends State<ManageAccounts> {
                 height: 30,
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height - 100,
+                height: MediaQuery.of(context).size.height / 3,
                 child: ListView.builder(
                   itemCount: 1,
                   itemBuilder: (context, index) {
@@ -196,6 +199,49 @@ class _ManageAccountsState extends State<ManageAccounts> {
                   },
                 ),
               ),
+              Row(
+                children: [
+                  Center(
+                    child: RecButton(
+                        fun: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) {
+                              return createAccount();
+                            },
+                          ));
+                        },
+                        label: Text(
+                          "Add Account",
+                          style: small_white_title,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        width: 160,
+                        height: 50,
+                        color: maincolor),
+                  ),
+                  SizedBox(
+                    width: 7,
+                  ),
+                  Center(
+                    child: RecButton(
+                        fun: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) {
+                              return AcceptAccounts();
+                            },
+                          ));
+                        },
+                        label: Text(
+                          "accept accounts",
+                          style: small_white_title,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        width: 160,
+                        height: 50,
+                        color: maincolor),
+                  ),
+                ],
+              )
             ],
           ),
         ),

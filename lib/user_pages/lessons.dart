@@ -18,31 +18,31 @@ class _CourseLessonsState extends State<CourseLessons> {
     Icon(
       CupertinoIcons.book,
       color: subcolor,
-      size: 40,
+      size: 25,
     ),
     Icon(
       Icons.file_copy_outlined,
       color: subcolor,
-      size: 40,
+      size: 25,
     ),
     Icon(
       CupertinoIcons.video_camera,
       color: subcolor,
-      size: 40,
+      size: 25,
     ),
   ];
   List<Text> titles = [
     Text(
       'Books',
-      style: sub_white_title,
+      style: small_white_title,
     ),
     Text(
       'Slides',
-      style: sub_white_title,
+      style: small_white_title,
     ),
     Text(
       'Videos',
-      style: sub_white_title,
+      style: small_white_title,
     ),
   ];
   @override
@@ -56,7 +56,7 @@ class _CourseLessonsState extends State<CourseLessons> {
         ),
       ),
       body: Container(
-        margin: const EdgeInsets.only(top: 40),
+        margin: const EdgeInsets.only(top: 70),
         child: ListView.builder(
           itemCount: 3,
           itemBuilder: (context, index) {

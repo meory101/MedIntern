@@ -19,23 +19,23 @@ class _AttendanceState extends State<Attendance> {
     List<Text> titles = [
       Text(
         'Record attendance',
-        style: sub_white_title,
+        style: small_white_title,
       ),
       Text(
         'View attendance',
-        style: sub_white_title,
+        style: small_white_title,
       ),
     ];
     List<Icon> icons = [
       Icon(
         Icons.location_on,
         color: subcolor,
-        size: 40,
+        size: 25,
       ),
       Icon(
         Icons.location_history,
         color: subcolor,
-        size: 40,
+        size: 25,
       ),
     ];
        List<String> routes = [
@@ -44,7 +44,7 @@ class _AttendanceState extends State<Attendance> {
       
     ];
     return Scaffold(
-      drawer: const MainDrawer(),
+      // drawer: const MainDrawer(),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80),
         child: MainAppBar(
@@ -65,6 +65,7 @@ class _AttendanceState extends State<Attendance> {
                 child: CustomListTile(
                     color: light_box_color,
                     icon: icons[index],
+                    subtitle: Text('click here',style: small_grey_title,),
                     title: titles[index]),
               ),
             );

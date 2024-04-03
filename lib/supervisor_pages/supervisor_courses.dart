@@ -20,15 +20,15 @@ class _SupervisorCoursesState extends State<SupervisorCourses> {
     List<Text> titles = [
       Text(
         'Childhood Diseases',
-        style: sub_white_title,
+        style: small_white_title,
       ),
       Text(
         'Perdiatric Health Care Ethics',
-        style: sub_white_title,
+        style: small_white_title,
       ),
       Text(
         'Perdiatric Emergency',
-        style: sub_white_title,
+        style: small_white_title,
       ),
     ];
 
@@ -37,12 +37,21 @@ class _SupervisorCoursesState extends State<SupervisorCourses> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80),
         child: MainAppBar(
-          color: Colors.transparent,
-          title: '',
+          title: 'Courses',
         ),
       ),
+      // drawer: const MainDrawer(),
+      // appBar: PreferredSize(
+      //   preferredSize: const Size.fromHeight(100),
+      //   child: Row(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: [
+      //       Container(child: Image.asset("assets/images/logo.jpg")),
+      //     ],
+      //   ),
+      // ),
       body: Container(
-        margin: EdgeInsets.only(top: 40),
+        margin: EdgeInsets.only(top: 50),
         child: ListView.builder(
           itemCount: 3,
           itemBuilder: (context, index) {

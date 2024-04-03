@@ -17,18 +17,29 @@ class _CoursesState extends State<Courses> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MainDrawer(),
+      // drawer: MainDrawer(),
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(80),
           child: MainAppBar(
             title: 'Courses',
           )),
       body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 10),
         margin: EdgeInsets.only(top: 40),
-        child: ListView.builder(
-          itemCount: 1,
-          itemBuilder: (context, index) {
-            return InkWell(
+        child: ListView(
+          children: [
+            Text(
+              'Courses',
+              style: sub_black_title,
+            ),
+            Text(
+              'you can check all available courses here!',
+              style: small_grey_title,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            InkWell(
               onTap: () {
                 Navigator.of(context).pushNamed('coursesdet');
               },
@@ -37,19 +48,43 @@ class _CoursesState extends State<Courses> {
                 icon: Icon(
                   CupertinoIcons.book_fill,
                   color: subcolor,
-                  size: 40,
+                  size: 25,
                 ),
                 subtitle: Text(
                   'Dr.khalid',
-                  style: small_grey_title,
+                  style: esmall_dark_grey_title,
                 ),
                 title: Text(
                   'Pediatrices',
-                  style: sub_white_title,
+                  style: med_white_title,
                 ),
               ),
-            );
-          },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.of(context).pushNamed('coursesdet');
+              },
+              child: CustomListTile(
+                color: light_box_color,
+                icon: Icon(
+                  CupertinoIcons.book_fill,
+                  color: subcolor,
+                  size: 25,
+                ),
+                subtitle: Text(
+                  'Dr.ahmad',
+                  style: esmall_dark_grey_title,
+                ),
+                title: Text(
+                  'Course 22kj',
+                  style: med_white_title,
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );

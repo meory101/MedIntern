@@ -20,12 +20,12 @@ final TextStyle med_green_title = TextStyle(color: maincolor, fontSize: 18);
 final TextStyle small_green_title = TextStyle(color: maincolor, fontSize: 16);
 
 //black
-final TextStyle main_black_title = TextStyle(color: Colors.black, fontSize: 50);
-final TextStyle sub_black_title = TextStyle(color: Colors.black, fontSize: 24);
+final TextStyle main_black_title = TextStyle(color: Colors.black54, fontSize: 50);
+final TextStyle sub_black_title = TextStyle(color: Colors.black54, fontSize: 24);
 final TextStyle sub_black_bold =
-    TextStyle(color: Colors.black, fontSize: 24, fontWeight: FontWeight.w900);
-final  med_black_title = TextStyle(color: Colors.black, fontSize: 18);
-final TextStyle small_black_title = TextStyle(color: Colors.black, fontSize: 16);
+    TextStyle(color: Colors.black54, fontSize: 24, fontWeight: FontWeight.w800);
+final  med_black_title = TextStyle(color: Colors.black54, fontSize: 18);
+final TextStyle small_black_title = TextStyle(color: Colors.black54, fontSize: 16);
 
 
 //white
@@ -53,3 +53,5 @@ final TextStyle sub_grey_title = TextStyle(color: Colors.grey, fontSize: 24);
 final TextStyle med_grey_title = TextStyle(color: Colors.grey, fontSize: 18);
 final TextStyle small_grey_title = TextStyle(color: Colors.grey, fontSize: 16);
 final TextStyle small_dark_grey_title = TextStyle(color: Color.fromARGB(255, 105, 104, 104), fontSize: 16);
+final TextStyle esmall_dark_grey_title =
+    TextStyle(color: Color.fromARGB(255, 105, 104, 104), fontSize: 14);

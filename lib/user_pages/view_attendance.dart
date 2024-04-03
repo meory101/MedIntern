@@ -16,94 +16,45 @@ class _ViewAttendanceState extends State<ViewAttendance> {
   @override
   Widget build(BuildContext context) {
     List<Widget> titles = [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            flex: 1,
-            child: Text(
-              '2-10-2023',
-              style: sub_white_title,
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Monday', style: small_dark_grey_title),
-                Text('7:30 am - 3:00 pm', style: small_dark_grey_title),
-              ],
-            ),
-          ),
-        ],
+      Text(
+        '2-10-2023',
+        style: small_white_title,
       ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            flex: 1,
-            child: Text(
-              '3-10-2023',
-              style: sub_white_title,
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Tuesday', style: small_dark_grey_title),
-                Text('7:44 am - 3:00 pm', style: small_dark_grey_title),
-              ],
-            ),
-          ),
-        ],
+
+      // Expanded(
+
+      Text(
+        '3-10-2023',
+        style: small_white_title,
       ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            flex: 1,
-            child: Text(
-              '4-10-2023',
-              style: sub_white_title,
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Wednsday', style: small_dark_grey_title),
-                Text('7:59 am - 3:00 pm', style: small_dark_grey_title),
-              ],
-            ),
-          ),
-        ],
+
+      Text(
+        '4-10-2023',
+        style: small_white_title,
       ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            flex: 1,
-            child: Text(
-              '5-10-2023',
-              style: sub_white_title,
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Thursday', style: small_dark_grey_title),
-                Text('7:30 am - 3:00 pm', style: small_dark_grey_title),
-              ],
-            ),
-          ),
-        ],
+
+      Text(
+        '5-10-2023',
+        style: small_white_title,
       ),
+    ];
+    List<Widget> subs = [
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            'Monday',
+            style: esmall_dark_grey_title,
+          ),
+          Text(
+            '7:30am - 3:00 pm',
+            style: esmall_dark_grey_title,
+          )
+        ],
+      )
     ];
 
     return Scaffold(
@@ -122,15 +73,18 @@ class _ViewAttendanceState extends State<ViewAttendance> {
               return InkWell(
                 onTap: () {},
                 child: Container(
+                  // height: 100,
                   margin: EdgeInsets.only(bottom: 10),
                   child: CustomListTile(
-                      color: light_box_color,
-                      icon: Icon(
-                        Icons.check_box,
-                        size: 40,
-                        color: Colors.white,
-                      ),
-                      title: titles[index]),
+                    color: light_box_color,
+                    icon: Icon(
+                      Icons.check_box,
+                      size: 25,
+                      color: Colors.white,
+                    ),
+                    title: titles[index],
+                    subtitle: subs[0],
+                  ),
                 ),
               );
             },
