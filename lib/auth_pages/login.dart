@@ -180,11 +180,11 @@ class _LogInState extends State<LogIn> {
                                         print('dddddddddddddd');
                                         print(prefs!.getString("name"));
                                         Navigator.of(context)
-                                            .push(MaterialPageRoute(
+                                            .pushAndRemoveUntil(MaterialPageRoute(
                                           builder: (context) {
                                             return CustomBottomAppBar();
                                           },
-                                        ));
+                                        ), (route) => false,);
                                       } else if (user.docs[0]
                                               .data()['roleid'] ==
                                           "admin") {
@@ -192,11 +192,11 @@ class _LogInState extends State<LogIn> {
                                         prefs!.setString('name',
                                             "${user.docs[0].data()['name']}");
                                         Navigator.of(context)
-                                            .push(MaterialPageRoute(
+                                            .pushAndRemoveUntil(MaterialPageRoute(
                                           builder: (context) {
                                             return Adminbottomappbar();
                                           },
-                                        ));
+                                        ) ,(route) => false,);
                                       } else if (user.docs[0]
                                               .data()['roleid'] ==
                                           "supervisor") {
@@ -205,11 +205,11 @@ class _LogInState extends State<LogIn> {
                                             "${user.docs[0].data()['name']}");
 
                                         Navigator.of(context)
-                                            .push(MaterialPageRoute(
+                                            .pushAndRemoveUntil(MaterialPageRoute(
                                           builder: (context) {
                                             return SupervisorBottomAppBar();
                                           },
-                                        ));
+                                        ),(route) => false,);
                                       }
                                     }
                                   }

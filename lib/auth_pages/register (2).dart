@@ -230,11 +230,11 @@ class _RegisterState extends State<Register> {
                                     prefs!.setString("role", "super");
                                   }
                                   Future.delayed(Duration(milliseconds: 1000));
-                                  Navigator.of(context).push(MaterialPageRoute(
+                                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
                                     builder: (context) {
                                       return LogIn();
                                     },
-                                  ));
+                                  ),(route) => false,);
                                 }).catchError((_) {
                                   print("an error occured");
                                 });
