@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:med_intern/components/main_appbar.dart';
@@ -6,13 +7,24 @@ import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
 
 class Announcments extends StatefulWidget {
-  const Announcments({super.key});
-
+  String course_id;
+  Announcments({required this.course_id});
   @override
   State<Announcments> createState() => _AnnouncmentsState();
 }
 
 class _AnnouncmentsState extends State<Announcments> {
+  var data;
+
+  fun() {
+    data = FirebaseFirestore.instance.collection('announcments').where('courseid',isEqualTo: widget.course_id).snapshots();
+    setState(() {});
+  }
+  @override
+  void initState() {
+    fun();
+    super.initState();
+  }
   List<Text> titles = [
     Text(
       'Pediatrics course',
@@ -237,6 +249,7 @@ class _AnnouncmentsState extends State<Announcments> {
       size: 25,
     ),
   ];
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -250,48 +263,72 @@ class _AnnouncmentsState extends State<Announcments> {
       body: Container(
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-        child: ListView.builder(
-          itemCount: 4,
-          itemBuilder: (context, index) {
-            if (index == 0) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Course announcments',
-                    style: sub_black_title,
-                  ),
-                  Text(
-                    'you can find all course announcments here!',
-                    style: small_grey_title,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                ],
-              );
-            } else {
-              return Container(
-                margin: const EdgeInsets.only(bottom: 20),
-                child: Card(
-                  elevation: 0.7,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 20),
-                    margin: const EdgeInsets.only(bottom: 20),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [icons[index - 1], titles[index - 1]],
+        child: StreamBuilder<Object>(
+          stream: data,
+          builder: (context,AsyncSnapshot snapshot) {
+            if(snapshot.hasData){
+              return ListView.builder(
+                  itemCount: snapshot.data.docs.length+1,
+                  itemBuilder: (context, index) {
+                    if (index == 0) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Course announcments',
+                            style: sub_black_title,
+                          ),
+                          Text(
+                            'you can find all course announcments here!',
+                            style: small_grey_title,
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                        ],
+                      );
+                    } else {
+                      return Container(
+                        margin: const EdgeInsets.only(bottom: 20),
+                        child: Card(
+                          elevation: 0.7,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 20),
+                            margin: const EdgeInsets.only(bottom: 20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                    '${snapshot.data.docs[index-1].data()['title']}',style: small_black_title,),
+                                Text(
+                                    '${snapshot.data.docs[index-1].data()['content']}',style: small_dark_grey_title,)
+                              ],
+                            ),
+                          ),
                         ),
-                        subtitles[index - 1],
-                      ],
+                      );
+                    }
+                  },
+                );
+            }
+            else if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                  child: SizedBox(
+                    height: 40,
+                    width: 40,
+                    child: CircularProgressIndicator(
+                      color: maincolor,
                     ),
                   ),
-                ),
-              );
-            }
-          },
+                );
+              } else {
+                return Center(
+                  child: Text('no data'),
+                );
+              }
+
+          }
         ),
       ),
     );

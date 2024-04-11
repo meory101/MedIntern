@@ -1,12 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:med_intern/Admin_pages/Admin_bottom_appbar.dart';
 import 'package:med_intern/Admin_pages/editaccount.dart';
 import 'package:med_intern/Admin_pages/mangeschedual.dart';
 import 'package:med_intern/Admin_pages/rotation.dart';
 import 'package:med_intern/auth_pages/login.dart';
+import 'package:med_intern/auth_pages/password_recovery.dart';
 import 'package:med_intern/auth_pages/register%20(2).dart';
+import 'package:med_intern/auth_pages/reset_code.dart';
+import 'package:med_intern/auth_pages/reset_password.dart';
 import 'package:med_intern/supervisor_pages/Assignment.dart';
 import 'package:med_intern/supervisor_pages/addAssignmemt.dart';
 import 'package:med_intern/supervisor_pages/announcment.dart';
@@ -18,7 +20,6 @@ import 'package:med_intern/supervisor_pages/interntGrades.dart';
 import 'package:med_intern/supervisor_pages/nexturgentcall.dart';
 import 'package:med_intern/supervisor_pages/supervisor_bottom_appbar.dart';
 import 'package:med_intern/supervisor_pages/tryagain.dart';
-import 'package:med_intern/accept_account.dart';
 import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/user_pages/announcment.dart';
 import 'package:med_intern/user_pages/assesments.dart';
@@ -30,11 +31,8 @@ import 'package:med_intern/user_pages/courses_details.dart';
 import 'package:med_intern/user_pages/grades.dart';
 import 'package:med_intern/user_pages/lessons.dart';
 import 'package:med_intern/user_pages/more.dart';
-import 'package:med_intern/auth_pages/password_recovery.dart';
 import 'package:med_intern/user_pages/record_attendance.dart';
 import 'package:med_intern/user_pages/report.dart';
-import 'package:med_intern/auth_pages/reset_code.dart';
-import 'package:med_intern/auth_pages/reset_password.dart';
 import 'package:med_intern/user_pages/urgent_call.dart';
 import 'package:med_intern/user_pages/view_attendance.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -49,15 +47,16 @@ extension IsEmail on String {
 
 extension Password on String {
   bool IsPassword() {
-    return this.length < 6;
+    return length < 6;
   }
 }
+
 SharedPreferences? prefs;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    options: FirebaseOptions(
+    options: const FirebaseOptions(
         apiKey: "AIzaSyA-phM3cvU3pbLRfMrsqavx3o9uck_g_nA",
         appId: "1:694621040839:android:9b9fb31ac36fc23f038ee2",
         messagingSenderId: "694621040839",
@@ -101,7 +100,14 @@ class _MyAppState extends State<MyApp> {
 
       //user
       // home: Register(),
-      home: role =="user" ? BottomAppBar():role == "admin" ? Adminbottomappbar():role =="super"?SupervisorBottomAppBar(): Register(),
+      
+      home: role == "user"
+          ? CustomBottomAppBar()
+          : role == "admin"
+              ?  Adminbottomappbar()
+              : role == "super"
+                  ? SupervisorBottomAppBar()
+                  :  Register(),
 
       //admin
       // home: Adminbottomappbar(),
@@ -112,37 +118,37 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.light(primary: maincolor),
       ),
       routes: {
-        "login": (context) => LogIn(),
-        "resetpassword": (context) => Resetpassword(),
-        "resetcode": (context) => ResetCode(),
-        "PasswordRec": (context) => PasswordRec(),
+        "login": (context) => const LogIn(),
+        "resetpassword": (context) => const Resetpassword(),
+        "resetcode": (context) => const ResetCode(),
+        "PasswordRec": (context) => const PasswordRec(),
         "bottomappbar": (context) => CustomBottomAppBar(),
-        "courses": (context) => Courses(),
-        "coursesdet": (context) => CourseDet(),
-        "announcments": (context) => Announcments(),
-        "courselessons": (context) => CourseLessons(),
-        "assesments": (context) => Assesments(),
-        "report": (context) => Report(),
+        "courses": (context) => const Courses(),
+        // "coursesdet": (context) => CourseDet(),
+        // "announcments": (context) => const Announcments(),
+        "courselessons": (context) => const CourseLessons(),
+        "assesments": (context) => const Assesments(),
+        "report": (context) => const Report(),
         'grades': (context) => grades(),
-        'coursecontent': (context) => course_content(),
-        'attendance': (context) => Attendance(),
-        'record_attendance': (context) => RecordAttendace(),
-        'view_attendance': (context) => ViewAttendance(),
-        'urgent_calls': (context) => UrgentCalls(),
+        'coursecontent': (context) => const course_content(),
+        'attendance': (context) => const Attendance(),
+        'record_attendance': (context) => const RecordAttendace(),
+        'view_attendance': (context) => const ViewAttendance(),
+        'urgent_calls': (context) => const UrgentCalls(),
         'more': (context) => More(),
-        'rotation': (context) => Rotation(),
-        'editaccount': (context) => EditAccount(),
-        'superannounc': (context) => SupAnnouncments(),
-        'createannouncment': (context) => CreateAnnouncment(),
-        'supcoursecontent': (context) => SupCourseContent(),
-        'coursematerial': (context) => CourseMaterial(),
-        'Assignment': (context) => Assignment(),
-        'addAssignment': (context) => addAssignment(),
-        'Attendance': (context) => internAttendance(),
-        'grade': (context) => interngrades(),
-        'sendcall': (context) => sendcall(),
-        'tryagain': (context) => tryagain(),
-        'Manage Scheduale': (context) => Mangeschedual(),
+        'rotation': (context) => const Rotation(),
+        'editaccount': (context) => const EditAccount(),
+        // 'superannounc': (context) => SupAnnouncments(),
+        // 'createannouncment': (context) => const CreateAnnouncment(),
+        'supcoursecontent': (context) => const SupCourseContent(),
+        'coursematerial': (context) => const CourseMaterial(),
+        'Assignment': (context) => const Assignment(),
+        'addAssignment': (context) => const addAssignment(),
+        'Attendance': (context) => const internAttendance(),
+        'grade': (context) => const interngrades(),
+        'sendcall': (context) => const sendcall(),
+        'tryagain': (context) => const tryagain(),
+        'Manage Scheduale': (context) => const Mangeschedual(),
       },
     );
   }

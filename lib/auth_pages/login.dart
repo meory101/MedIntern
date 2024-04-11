@@ -128,100 +128,140 @@ class _LogInState extends State<LogIn> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Forget password? ",
-                                ),
-                                InkWell(
-                                    onTap: () {
-                                      Navigator.of(context)
-                                          .pushNamed("resetpassword");
-                                    },
-                                    child: Text(
-                                      "Reset here",
-                                      style: small_green_title,
-                                    )),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            RecButton(
-                                fun: () async {
-                                  if (fkey.currentState!.validate()) {
-                                    print('validate');
-                                    print(emailController.text);
-                                    print(passwordController.text);
-                                    user = await FirebaseFirestore.instance
-                                        .collection('users')
-                                        .where('email',
-                                            isEqualTo: "${emailController.text}"
-                                                .replaceAll(" ", ""))
-                                        .where('password',
-                                            isEqualTo:
-                                                "${passwordController.text}")
-                                        .where("status", isEqualTo: "1")
-                                        .get();
-                                    print("${user.docs[0].data()['name']}");
-                                    if (user != null && user.docs.isNotEmpty) {
-                                      if (user.docs[0].data()['roleid'] ==
-                                          "user") {
-                                        prefs!.setString('role', "user");
-                                        prefs!.setString('name',
-                                            "${user.docs[0].data()['name']}");
-                                        print('dddddddddddddd');
-                                        print(prefs!.getString("name"));
-                                        Navigator.of(context)
-                                            .pushAndRemoveUntil(MaterialPageRoute(
-                                          builder: (context) {
-                                            return CustomBottomAppBar();
-                                          },
-                                        ), (route) => false,);
-                                      } else if (user.docs[0]
-                                              .data()['roleid'] ==
-                                          "admin") {
-                                        prefs!.setString('role', "admin");
-                                        prefs!.setString('name',
-                                            "${user.docs[0].data()['name']}");
-                                        Navigator.of(context)
-                                            .pushAndRemoveUntil(MaterialPageRoute(
-                                          builder: (context) {
-                                            return Adminbottomappbar();
-                                          },
-                                        ) ,(route) => false,);
-                                      } else if (user.docs[0]
-                                              .data()['roleid'] ==
-                                          "supervisor") {
-                                        prefs!.setString('role', "super");
-                                        prefs!.setString('name',
-                                            "${user.docs[0].data()['name']}");
+                      child: Align(
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              //reset password
 
-                                        Navigator.of(context)
-                                            .pushAndRemoveUntil(MaterialPageRoute(
-                                          builder: (context) {
-                                            return SupervisorBottomAppBar();
-                                          },
-                                        ),(route) => false,);
+                              // Row(
+                              //   mainAxisAlignment: MainAxisAlignment.center,
+                              //   children: [
+                              //     Text(
+                              //       "Forget password? ",
+                              //     ),
+                              //     InkWell(
+                              //         onTap: () {
+                              //           Navigator.of(context)
+                              //               .pushNamed("resetpassword");
+                              //         },
+                              //         child: Text(
+                              //           "Reset here",
+                              //           style: small_green_title,
+                              //         )),
+                              //     SizedBox(
+                              //       height: 10,
+                              //     ),
+                              //   ],
+                              // ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              RecButton(
+                                  fun: () async {
+                                    if (fkey.currentState!.validate()) {
+                                      print('validate');
+                                      print(emailController.text);
+                                      print(passwordController.text);
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return AlertDialog(
+                                            backgroundColor: Colors.transparent,
+                                            title: Center(
+                                              child: SizedBox(
+                                                height: 20,
+                                                width: 20,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                        color: maincolor),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      );
+                                      user = await FirebaseFirestore.instance
+                                          .collection('users')
+                                          .where('email',
+                                              isEqualTo:
+                                                  "${emailController.text}"
+                                                      .replaceAll(" ", ""))
+                                          .where('password',
+                                              isEqualTo:
+                                                  "${passwordController.text}")
+                                          .where("status", isEqualTo: "1")
+                                          .get();
+                                      if (user != null &&
+                                          user.docs.isNotEmpty) {
+                                        if (user.docs[0].data()['roleid'] ==
+                                            "user") {
+                                          prefs!.setString('role', "user");
+                                          prefs!.setString('id',
+                                              "${user.docs[0].reference.id}");
+
+                                          prefs!.setString('name',
+                                              "${user.docs[0].data()['name']}");
+                                          print('dddddddddddddd');
+                                          print(prefs!.getString("name"));
+                                          Navigator.of(context)
+                                              .pushAndRemoveUntil(
+                                            MaterialPageRoute(
+                                              builder: (context) {
+                                                return CustomBottomAppBar();
+                                              },
+                                            ),
+                                            (route) => false,
+                                          );
+                                        } else if (user.docs[0]
+                                                .data()['roleid'] ==
+                                            "admin") {
+                                          prefs!.setString('id',
+                                              "${user.docs[0].reference.id}");
+
+                                          prefs!.setString('role', "admin");
+                                          prefs!.setString('name',
+                                              "${user.docs[0].data()['name']}");
+                                          Navigator.of(context)
+                                              .pushAndRemoveUntil(
+                                            MaterialPageRoute(
+                                              builder: (context) {
+                                                return Adminbottomappbar();
+                                              },
+                                            ),
+                                            (route) => false,
+                                          );
+                                        } else if (user.docs[0]
+                                                .data()['roleid'] ==
+                                            "supervisor") {
+                                          prefs!.setString('id',
+                                              "${user.docs[0].reference.id}");
+
+                                          prefs!.setString('role', "super");
+                                          prefs!.setString('name',
+                                              "${user.docs[0].data()['name']}");
+
+                                          Navigator.of(context)
+                                              .pushAndRemoveUntil(
+                                            MaterialPageRoute(
+                                              builder: (context) {
+                                                return SupervisorBottomAppBar();
+                                              },
+                                            ),
+                                            (route) => false,
+                                          );
+                                        }
                                       }
                                     }
-                                  }
-                                },
-                                label: Text(
-                                  'log in',
-                                  style: small_black_title,
-                                ),
-                                width: 140,
-                                height: 50,
-                                color: maincolor)
-                          ]),
+                                  },
+                                  label: Text(
+                                    'log in',
+                                    style: small_black_title,
+                                  ),
+                                  width: 140,
+                                  height: 50,
+                                  color: maincolor)
+                            ]),
+                      ),
                     ),
                     SizedBox(
                       height: 60,

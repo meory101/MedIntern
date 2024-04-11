@@ -1,4 +1,3 @@
-
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:med_intern/auth_pages/login.dart';
@@ -24,234 +23,270 @@ class _RegisterState extends State<Register> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> fkey = GlobalKey();
+  showDialogD(BuildContext context) {
+    return AwesomeDialog(
+      context: context,
+      dialogType: DialogType.warning,
+      animType: AnimType.rightSlide,
+      desc: 'Please wait until admin accepts you',
+    )..show();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              margin: EdgeInsets.only(top: 50),
-              height: MediaQuery.of(context).size.height / 8,
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.contain,
-                  image: AssetImage(
-                    "assets/images/logo.jpg",
+        child: Form(
+          key: fkey,
+          child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(top: 50),
+                height: MediaQuery.of(context).size.height / 8,
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.contain,
+                    image: AssetImage(
+                      "assets/images/logo.jpg",
+                    ),
                   ),
                 ),
               ),
-            ),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    height: 1,
-                  ),
-                  Center(
-                      child: Text(
-                    "Signup",
-                    style: med_deepgreen_bold,
-                  )),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: Text(
-                      'UserName',
-                      style: small_deepgreen_title,
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 1,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Textform(
-                      width: double.infinity,
-                      height: 55,
-                      color: maincolor,
-                      controller: username,
-                      text: '',
-                      obscure: false,
-                      textInputType: TextInputType.name,
+                    Center(
+                        child: Text(
+                      "Signup",
+                      style: med_deepgreen_bold,
+                    )),
+                    const SizedBox(
+                      height: 10,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
+                    Padding(
                       padding: const EdgeInsets.only(bottom: 8),
                       child: Text(
-                        'Email',
+                        'UserName',
                         style: small_deepgreen_title,
-                      )),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Textform(
-                      width: double.infinity,
-                      height: 55,
-                      color: maincolor,
-                      controller: emailController,
-                      text: '',
-                      obscure: false,
-                      textInputType: TextInputType.emailAddress,
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: Text(
-                      'Password',
-                      style: small_deepgreen_title,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Textform(
+                        val: (p0) {
+                          if (p0 != null && p0.isNotEmpty) {
+                          } else {
+                            return 'rquired';
+                          }
+                        },
+                        width: double.infinity,
+                        height: 55,
+                        color: maincolor,
+                        controller: username,
+                        text: '',
+                        obscure: false,
+                        textInputType: TextInputType.name,
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Textform(
-                      width: double.infinity,
-                      height: 55,
-                      color: maincolor,
-                      controller: passwordController,
-                      text: '',
-                      obscure: true,
-                      textInputType: TextInputType.visiblePassword,
+                    const SizedBox(
+                      height: 10,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            setState(() {
-                              selectedtype = 0;
-                            });
-                          },
-                          child: RecButton(
-                            color: selectedtype == 0 ? maincolor : Colors.white,
-                            label: Text(
-                              'User',
-                              style: selectedtype == 0
-                                  ? small_deepgreen_title
-                                  : small_black_title,
-                            ),
-                            width: 80,
-                            height: 40,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 50,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            setState(() {
-                              selectedtype = 2;
-                            });
-                          },
-                          child: RecButton(
-                            label: Text(
-                              'supervisor',
-                              style: selectedtype == 2
-                                  ? small_deepgreen_title
-                                  : small_black_title,
-                            ),
-                            color: selectedtype == 2 ? maincolor : Colors.white,
-                            width: 80,
-                            height: 40,
-                          ),
-                        )
-                      ],
+                    Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: Text(
+                          'Email',
+                          style: small_deepgreen_title,
+                        )),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Textform(
+                        width: double.infinity,
+                        height: 55,
+                        color: maincolor,
+                        controller: emailController,
+                        text: '',
+                        val: (p0) {
+                          if (p0 != null && p0.isNotEmpty) {
+                            if (!p0.CheckEmail()) {
+                              return "enter valid email";
+                            }
+                          } else {
+                            return 'rquired';
+                          }
+                        },
+                        obscure: false,
+                        textInputType: TextInputType.emailAddress,
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: Text(
+                        'Password',
+                        style: small_deepgreen_title,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Textform(
+                        val: (p0) {
+                          if (p0 != null && p0.isNotEmpty) {
+                            print(p0.length);
+                            if (p0.IsPassword()) {
+                              print('less');
+                              return "min 6";
+                            }
+                          } else {
+                            return 'rquired';
+                          }
+                        },
+                        width: double.infinity,
+                        height: 55,
+                        color: maincolor,
+                        controller: passwordController,
+                        text: '',
+                        obscure: true,
+                        textInputType: TextInputType.visiblePassword,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Already have Account? ",
-                              ),
-                              InkWell(
-                                  onTap: () {
-                                    Navigator.of(context)
-                                        .pushReplacementNamed("login");
-                                  },
-                                  child: Text(
-                                    "login",
-                                    style: small_green_title,
-                                  )),
-                              SizedBox(
-                                height: 10,
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          RecButton(
-                              fun: () async {
-                                await FirebaseFirestore.instance
-                                    .collection('users')
-                                    .add({
-                                  "name": "${username.text}",
-                                  "email": "${emailController.text}".replaceAll(" ", ""),
-                                  "password": "${passwordController.text}".replaceAll(" ", ""),
-                                  "status": "0",
-                                  "roleid": selectedtype == 0 ? "user" : "supervisor"
-                                }).then((_) {
-                                  AwesomeDialog(
-                                    context: context,
-                                    dialogType: DialogType.warning,
-                                    animType: AnimType.rightSlide,
-                                    desc: 'Please wait until admin accepts you',
-                                  )..show();
-
-                                  if (selectedtype == 0) {
-                                    print('kk');
-                                    prefs!.setString("role", "user");
-                                  } else if (selectedtype == 1) {
-                                    prefs!.setString("role", "super");
-                                  }
-                                  Future.delayed(Duration(milliseconds: 1000));
-                                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
-                                    builder: (context) {
-                                      return LogIn();
-                                    },
-                                  ),(route) => false,);
-                                }).catchError((_) {
-                                  print("an error occured");
-                                });
-                              },
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                selectedtype = 0;
+                              });
+                            },
+                            child: RecButton(
+                              color:
+                                  selectedtype == 0 ? maincolor : Colors.white,
                               label: Text(
-                                'Sign Up',
-                                style: small_black_title,
+                                'User',
+                                style: selectedtype == 0
+                                    ? small_deepgreen_title
+                                    : small_black_title,
                               ),
-                              width: 140,
-                              height: 50,
-                              color: maincolor)
-                        ]),
-                  ),
-                ],
+                              width: 80,
+                              height: 40,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 50,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                selectedtype = 2;
+                              });
+                            },
+                            child: RecButton(
+                              label: Text(
+                                'supervisor',
+                                style: selectedtype == 2
+                                    ? small_deepgreen_title
+                                    : small_black_title,
+                              ),
+                              color:
+                                  selectedtype == 2 ? maincolor : Colors.white,
+                              width: 80,
+                              height: 40,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Already have Account? ",
+                                ),
+                                InkWell(
+                                    onTap: () {
+                                      Navigator.of(context)
+                                          .pushReplacementNamed("login");
+                                    },
+                                    child: Text(
+                                      "login",
+                                      style: small_green_title,
+                                    )),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            RecButton(
+                                fun: () async {
+                                  if (fkey.currentState!.validate()) {
+                                    await FirebaseFirestore.instance
+                                        .collection('users')
+                                        .add({
+                                      "name": "${username.text}",
+                                      "email": "${emailController.text}"
+                                          .replaceAll(" ", ""),
+                                      "password": "${passwordController.text}"
+                                          .replaceAll(" ", ""),
+                                      "status": "0",
+                                      "roleid": selectedtype == 0
+                                          ? "user"
+                                          : "supervisor"
+                                    }).then((_) {
+                                      showDialogD(context);
+
+                                      Navigator.of(context).pushAndRemoveUntil(
+                                        MaterialPageRoute(
+                                          builder: (context) {
+                                            return LogIn();
+                                          },
+                                        ),
+                                        (route) => false,
+                                      );
+                                    }).catchError((_) {
+                                      print("an error occured");
+                                    });
+                                  }
+                                },
+                                label: Text(
+                                  'Sign Up',
+                                  style: small_black_title,
+                                ),
+                                width: 140,
+                                height: 50,
+                                color: maincolor)
+                          ]),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       )),
     );

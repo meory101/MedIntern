@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:med_intern/Admin_pages/create_Account.dart';
 import 'package:med_intern/auth_pages/login.dart';
 import 'package:med_intern/components/main_appbar.dart';
 import 'package:med_intern/components/main_drawer.dart';
@@ -10,28 +9,34 @@ import 'package:med_intern/main.dart';
 import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
 
-class CreateAnnouncment extends StatefulWidget {
-  String course_id;
-  CreateAnnouncment({ required this.course_id});
+class EditAnnouncment extends StatefulWidget {
+  String title;
+  String content;
+  String id;
+  EditAnnouncment(
+      {required this.content, required this.title, required this.id});
   @override
-  State<CreateAnnouncment> createState() => _CreateAnnouncmentState();
+  State<EditAnnouncment> createState() => _EditAnnouncmentState();
 }
 
-class _CreateAnnouncmentState extends State<CreateAnnouncment> {
+class _EditAnnouncmentState extends State<EditAnnouncment> {
   @override
   Widget build(BuildContext context) {
     final TextEditingController title = TextEditingController();
     final TextEditingController content = TextEditingController();
     final GlobalKey<FormState> fkey = GlobalKey();
 
-    createAnnouncment() async {
+    fun() async {
       if (fkey.currentState!.validate()) {
-        await FirebaseFirestore.instance.collection('announcments').add({
-          "title": "${title.text}",
-          "content": "${content.text}".replaceAll(" ", ""),
-          "superid": "${prefs!.getString('id')}",
-          "courseid" : widget.course_id
-        }).then((_) {
+        await FirebaseFirestore.instance
+            .collection('announcments')
+            .doc(widget.id)
+            .set({
+          "title": title.text.isEmpty ? widget.title : "${title.text}",
+          "content": content.text.isEmpty
+              ? widget.content
+              : "${content.text}".replaceAll(" ", ""),
+        }, SetOptions(merge: true)).then((_) {
           Navigator.of(context).pop();
         }).catchError((_) {
           print("an error occured");
@@ -44,7 +49,7 @@ class _CreateAnnouncmentState extends State<CreateAnnouncment> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80),
         child: MainAppBar(
-          title: 'Childhood diseases',
+          title: 'Edit Announcment',
         ),
       ),
       body: SafeArea(
@@ -64,21 +69,15 @@ class _CreateAnnouncmentState extends State<CreateAnnouncment> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'New Announcment',
+                  'Announcment',
                   style: sub_green_bold,
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 Textform(
-                    val: (p0) {
-                      if (p0 != null && p0.isNotEmpty) {
-                      } else {
-                        return 'rquired';
-                      }
-                    },
                     controller: title,
-                    text: 'title',
+                    text: '${widget.title}',
                     textInputType: TextInputType.text,
                     obscure: false,
                     color: Colors.white,
@@ -88,14 +87,8 @@ class _CreateAnnouncmentState extends State<CreateAnnouncment> {
                   height: 10,
                 ),
                 Textform(
-                    val: (p0) {
-                      if (p0 != null && p0.isNotEmpty) {
-                      } else {
-                        return 'rquired';
-                      }
-                    },
                     controller: content,
-                    text: 'content',
+                    text: '${widget.content}',
                     textInputType: TextInputType.text,
                     obscure: false,
                     color: Colors.white,
@@ -122,7 +115,7 @@ class _CreateAnnouncmentState extends State<CreateAnnouncment> {
                       width: 20,
                     ),
                     RoundButton(
-                        fun: createAnnouncment,
+                        fun: fun,
                         label: Text(
                           'Submit',
                           style: small_white_title,

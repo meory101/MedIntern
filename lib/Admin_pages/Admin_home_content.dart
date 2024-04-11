@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:med_intern/Admin_pages/add_course.dart';
 import 'package:med_intern/Admin_pages/create_Account.dart';
 import 'package:med_intern/Admin_pages/mangeschedual.dart';
 import 'package:med_intern/Admin_pages/rotation.dart';
@@ -132,6 +133,46 @@ class _AdminHomeState extends State<AdminHome> {
                             ),
                             Text(
                               'Add Account',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ],
+                        ),
+                      ]),
+                )),
+              ),
+               InkWell(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) {
+                      return AddCourse();
+                    },
+                  ));
+                },
+                child: Container(
+                    child: Container(
+                  height: 40,
+                  margin: const EdgeInsets.only(bottom: 15),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: Colors.black12),
+                  ),
+                  child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            SizedBox(
+                              width: 15,
+                            ),
+                            Icon(Icons.add_circle_outlined),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              'Add Course',
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 16,

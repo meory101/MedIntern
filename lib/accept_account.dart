@@ -14,12 +14,13 @@ class AcceptAccounts extends StatefulWidget {
 }
 
 class _AcceptAccountsState extends State<AcceptAccounts> {
-  var accounts;
   @override
   void initState() {
     fun();
     super.initState();
   }
+    var accounts;
+
 
   fun() {
     accounts = FirebaseFirestore.instance
