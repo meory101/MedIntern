@@ -168,45 +168,45 @@ class _HomeContentState extends State<HomeContent> {
                       ),
                     ]),
               )),
-              InkWell(
-                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) {
-                      return Announcments(course_id: "1",);
-                    },
-                  ));},
-                child: Container(
-                    child: Container(
-                  height: 40,
-                  margin: const EdgeInsets.only(bottom: 15),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black12),
-                  ),
-                  child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 15,
-                            ),
-                            Icon(Icons.cases_outlined),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              'annoncment',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ],
-                        ),
-                      ]),
-                )),
-              ),
+              // InkWell(
+              //    onTap: () {
+              //     Navigator.of(context).push(MaterialPageRoute(
+              //       builder: (context) {
+              //         return Announcments(course_id: "1",);
+              //       },
+              //     ));},
+              //   child: Container(
+              //       child: Container(
+              //     height: 40,
+              //     margin: const EdgeInsets.only(bottom: 15),
+              //     decoration: BoxDecoration(
+              //       borderRadius: BorderRadius.circular(10),
+              //       border: Border.all(color: Colors.black12),
+              //     ),
+              //     child: const Row(
+              //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //         children: [
+              //           Row(
+              //             children: [
+              //               SizedBox(
+              //                 width: 15,
+              //               ),
+              //               Icon(Icons.cases_outlined),
+              //               SizedBox(
+              //                 width: 10,
+              //               ),
+              //               Text(
+              //                 'annoncment',
+              //                 style: TextStyle(
+              //                     color: Colors.black,
+              //                     fontSize: 16,
+              //                     fontWeight: FontWeight.w400),
+              //               ),
+              //             ],
+              //           ),
+              //         ]),
+              //   )),
+              // ),
               InkWell(
                 onTap: () {
                   prefs!.clear();

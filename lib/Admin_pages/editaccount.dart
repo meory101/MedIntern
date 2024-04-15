@@ -1,26 +1,29 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:med_intern/Admin_pages/Admin_bottom_appbar.dart';
+import 'package:med_intern/Admin_pages/manage_account.dart';
 import 'package:med_intern/components/recbutton.dart';
 import 'package:med_intern/components/textform2.dart';
 import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
 
 class EditAccount extends StatefulWidget {
-  const EditAccount({super.key});
-
+  var data;
+  String docid;
+  EditAccount({required this.data, required this.docid});
   @override
   State<EditAccount> createState() => _EditAccountState();
 }
 
 class _EditAccountState extends State<EditAccount> {
-  final TextEditingController firstname = TextEditingController();
-  final TextEditingController lastname = TextEditingController();
-  final TextEditingController idnumber = TextEditingController();
-  final TextEditingController Mobilenumber = TextEditingController();
-  final TextEditingController Email = TextEditingController();
-  final TextEditingController password = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
+    final TextEditingController firstname =
+        TextEditingController(text: widget.data['name']);
+    final TextEditingController Email =
+        TextEditingController(text: widget.data['email']);
+    final TextEditingController password =
+        TextEditingController(text: widget.data['password']);
     return Scaffold(
         body: SafeArea(
       child: SingleChildScrollView(
@@ -52,14 +55,14 @@ class _EditAccountState extends State<EditAccount> {
                                 Expanded(
                                   flex: 1,
                                   child: Text(
-                                    'name:',
+                                    '',
                                     style: small_black_title,
                                   ),
                                 ),
                                 Expanded(
                                   flex: 3,
                                   child: Text(
-                                    'nour almuslim',
+                                    '',
                                     style: small_deepgreen_title,
                                   ),
                                 ),
@@ -70,14 +73,14 @@ class _EditAccountState extends State<EditAccount> {
                                 Expanded(
                                   flex: 1,
                                   child: Text(
-                                    'ID:',
+                                    '',
                                     style: small_black_title,
                                   ),
                                 ),
                                 Expanded(
                                   flex: 3,
                                   child: Text(
-                                    '22000004832',
+                                    '',
                                     style: small_deepgreen_title,
                                   ),
                                 ),
@@ -111,7 +114,7 @@ class _EditAccountState extends State<EditAccount> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                "First Name ",
+                                "Name ",
                                 style: small_black_title,
                               ),
                             )),
@@ -121,76 +124,6 @@ class _EditAccountState extends State<EditAccount> {
                             controller: firstname,
                           ),
                         ),
-                      ],
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Column(
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                "Last Name ",
-                                style: small_black_title,
-                              )),
-                        ),
-                        Expanded(
-                            flex: 2, child: Textform2(controller: lastname))
-                      ],
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Column(
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "ID Number  ",
-                              style: small_black_title,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                            flex: 2, child: Textform2(controller: idnumber))
-                      ],
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Column(
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "Mobile Number",
-                              style: small_black_title,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 2,
-                          child: Textform2(controller: Mobilenumber),
-                        )
                       ],
                     )
                   ],
@@ -266,6 +199,25 @@ class _EditAccountState extends State<EditAccount> {
                             width: 20,
                           ),
                           RecButton(
+                              fun: () {
+                                print(widget.docid);
+                                FirebaseFirestore.instance
+                                    .collection('users')
+                                    .doc(widget.docid)
+                                    .set({
+                                  "name":
+                                      "${firstname.text}".replaceAll(" ", ""),
+                                  "email": "${Email.text}".replaceAll(" ", ""),
+                                  "password":
+                                      "${password.text}".replaceAll(" ", ""),
+                                }, SetOptions(merge: true)).then((value) =>
+                                        Navigator.of(context)
+                                            .push(MaterialPageRoute(
+                                          builder: (context) {
+                                            return Adminbottomappbar();
+                                          },
+                                        )));
+                              },
                               label: Text(
                                 "update",
                                 style: small_black_title,

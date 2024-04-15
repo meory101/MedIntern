@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:med_intern/Admin_pages/Admin_bottom_appbar.dart';
 import 'package:med_intern/Admin_pages/editaccount.dart';
 import 'package:med_intern/Admin_pages/mangeschedual.dart';
@@ -28,7 +29,7 @@ import 'package:med_intern/user_pages/bottom_app_bar.dart';
 import 'package:med_intern/user_pages/course_content.dart';
 import 'package:med_intern/user_pages/courses.dart';
 import 'package:med_intern/user_pages/courses_details.dart';
-import 'package:med_intern/user_pages/grades.dart';
+import 'package:med_intern/supervisor_pages/grades.dart';
 import 'package:med_intern/user_pages/lessons.dart';
 import 'package:med_intern/user_pages/more.dart';
 import 'package:med_intern/user_pages/record_attendance.dart';
@@ -36,6 +37,8 @@ import 'package:med_intern/user_pages/report.dart';
 import 'package:med_intern/user_pages/urgent_call.dart';
 import 'package:med_intern/user_pages/view_attendance.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 extension IsEmail on String {
   CheckEmail() {
@@ -76,6 +79,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String? role;
+
   @override
   void initState() {
     if (prefs!.getString('role') != null) {
@@ -93,21 +97,21 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       //authentication
       // home:LogIn(),
 
       //user
       // home: Register(),
-      
+
       home: role == "user"
           ? CustomBottomAppBar()
           : role == "admin"
-              ?  Adminbottomappbar()
+              ? Adminbottomappbar()
               : role == "super"
                   ? SupervisorBottomAppBar()
-                  :  Register(),
+                  : Register(),
 
       //admin
       // home: Adminbottomappbar(),
@@ -129,7 +133,7 @@ class _MyAppState extends State<MyApp> {
         "courselessons": (context) => const CourseLessons(),
         "assesments": (context) => const Assesments(),
         "report": (context) => const Report(),
-        'grades': (context) => grades(),
+        // 'grades': (context) => grades(),
         'coursecontent': (context) => const course_content(),
         'attendance': (context) => const Attendance(),
         'record_attendance': (context) => const RecordAttendace(),
@@ -137,7 +141,7 @@ class _MyAppState extends State<MyApp> {
         'urgent_calls': (context) => const UrgentCalls(),
         'more': (context) => More(),
         'rotation': (context) => const Rotation(),
-        'editaccount': (context) => const EditAccount(),
+        // 'editaccount': (context) => const EditAccount(),
         // 'superannounc': (context) => SupAnnouncments(),
         // 'createannouncment': (context) => const CreateAnnouncment(),
         'supcoursecontent': (context) => const SupCourseContent(),

@@ -8,7 +8,7 @@ import 'package:med_intern/theme/fonts.dart';
 import 'package:med_intern/user_pages/announcment.dart';
 import 'package:med_intern/user_pages/attendance.dart';
 import 'package:med_intern/user_pages/course_content.dart';
-import 'package:med_intern/user_pages/grades.dart';
+import 'package:med_intern/supervisor_pages/grades.dart';
 
 class SupervisorCourseDet extends StatefulWidget {
   final Text title;
@@ -49,7 +49,7 @@ class _SupervisorCourseDetState extends State<SupervisorCourseDet> {
     List routes = [
       SupAnnouncments(title: widget.title.data!,course_id:  widget.course_id,),
       course_content(),
-      grades(),
+      grades(course_id: widget.course_id),
       Attendance(),
     ];
     return Scaffold(

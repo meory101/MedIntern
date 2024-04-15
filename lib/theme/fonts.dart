@@ -25,7 +25,7 @@ final TextStyle sub_black_title = TextStyle(color: Colors.black54, fontSize: 24)
 final TextStyle sub_black_bold =
     TextStyle(color: Colors.black54, fontSize: 24, fontWeight: FontWeight.w800);
 final  med_black_title = TextStyle(color: Colors.black54, fontSize: 18);
-final TextStyle small_black_title = TextStyle(color: Colors.black54, fontSize: 16);
+final TextStyle small_black_title = TextStyle(color: Colors.black54, fontSize: 14);
 
 
 //white

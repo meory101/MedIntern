@@ -7,7 +7,8 @@ import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
 import 'package:med_intern/user_pages/announcment.dart';
 import 'package:med_intern/user_pages/course_content.dart';
-import 'package:med_intern/user_pages/grades.dart';
+import 'package:med_intern/supervisor_pages/grades.dart';
+import 'package:med_intern/user_pages/ugrages.dart';
 
 class CourseDet extends StatefulWidget {
   String course_id;
@@ -59,15 +60,19 @@ class _CourseDetState extends State<CourseDet> {
         size: 25,
       ),
     ];
-    List routes = [
+    List _routes = [
       MaterialPageRoute(
         builder: (context) {
-          return Announcments(course_id: widget.course_id,);
+          return Announcments(
+            course_id: widget.course_id,
+          );
         },
       ),
       MaterialPageRoute(
         builder: (context) {
-          return grades();
+          return Ugrades(
+            course_id: widget.course_id,
+          );
         },
       ),
       MaterialPageRoute(
@@ -77,7 +82,9 @@ class _CourseDetState extends State<CourseDet> {
       ),
       MaterialPageRoute(
         builder: (context) {
-          return Announcments(course_id: widget.course_id,);
+          return Announcments(
+            course_id: widget.course_id,
+          );
         },
       ),
     ];
@@ -115,7 +122,7 @@ class _CourseDetState extends State<CourseDet> {
             } else {
               return InkWell(
                 onTap: () {
-                  Navigator.of(context).push(routes[index-1]);
+                  Navigator.of(context).push(_routes[index - 1]);
                 },
                 child: Container(
                   margin: const EdgeInsets.only(bottom: 20),

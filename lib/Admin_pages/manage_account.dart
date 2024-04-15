@@ -1,6 +1,8 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:med_intern/Admin_pages/create_Account.dart';
+import 'package:med_intern/Admin_pages/editaccount.dart';
 import 'package:med_intern/accept_account.dart';
 import 'package:med_intern/components/recbutton.dart';
 import 'package:med_intern/components/textform.dart';
@@ -15,9 +17,25 @@ class ManageAccounts extends StatefulWidget {
 }
 
 class _ManageAccountsState extends State<ManageAccounts> {
+  var accounts;
+
+  fun() {
+    accounts = FirebaseFirestore.instance
+        .collection('users')
+        .where('status', isEqualTo: "1")
+        .snapshots();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    fun();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    DeleteAccount() {
+    DeleteAccount(String docid) {
       AwesomeDialog(
         context: context,
         dialogType: DialogType.warning,
@@ -26,7 +44,9 @@ class _ManageAccountsState extends State<ManageAccounts> {
         desc: 'Are you sure you want to delete this account?',
         btnOkColor: maincolor,
         btnCancelColor: Colors.red,
-        btnOkOnPress: () {},
+        btnOkOnPress: () {
+          FirebaseFirestore.instance.collection('users').doc(docid).delete();
+        },
         btnCancelOnPress: () {},
       ).show();
     }
@@ -94,110 +114,116 @@ class _ManageAccountsState extends State<ManageAccounts> {
               const SizedBox(
                 height: 30,
               ),
-              SizedBox(
+              Container(
+                margin: EdgeInsets.only(bottom: 10),
                 height: MediaQuery.of(context).size.height / 3,
-                child: ListView.builder(
-                  itemCount: 1,
-                  itemBuilder: (context, index) {
-                    return Container(
-                        margin: const EdgeInsets.only(
-                          top: 10,
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 13),
-                        decoration: BoxDecoration(
-                          color: light_box_color,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              flex: 2,
-                              child: Column(
-                                children: [
-                                  Text(
-                                    'name',
-                                    style: small_dark_grey_title,
-                                  ),
-                                  const SizedBox(
-                                    height: 13,
-                                  ),
-                                  Text(
-                                    'nour',
-                                    style: med_white_bold,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              flex: 2,
-                              child: Column(
-                                children: [
-                                  Text(
-                                    'ID',
-                                    style: small_dark_grey_title,
-                                  ),
-                                  const SizedBox(
-                                    height: 13,
-                                  ),
-                                  Text(
-                                    '022333221',
-                                    style: med_white_bold,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Column(
-                                children: [
-                                  Text(
-                                    'edit',
-                                    style: small_dark_grey_title,
-                                  ),
-                                  IconButton(
-                                    onPressed: () {
-                                      Navigator.of(context)
-                                          .pushNamed('editaccount');
-                                    },
-                                    icon: CircleAvatar(
-                                      backgroundColor: subcolor,
-                                      child: const Icon(
-                                        Icons.edit,
-                                        color: Colors.white,
+                child: StreamBuilder(
+                    stream: accounts,
+                    builder: (context, AsyncSnapshot snapshot) {
+                      if (snapshot.hasData) {
+                        return ListView.builder(
+                          itemCount: snapshot.data.docs.length - 1,
+                          itemBuilder: (context, index) {
+                            return Container(
+                                margin: const EdgeInsets.only(
+                                  top: 10,
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 13),
+                                decoration: BoxDecoration(
+                                  color: light_box_color,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      flex: 2,
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            'name',
+                                            style: small_dark_grey_title,
+                                          ),
+                                          const SizedBox(
+                                            height: 13,
+                                          ),
+                                          Text(
+                                            '${snapshot.data.docs[index + 1].data()['email']}',
+                                            style: med_white_bold,
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Column(
-                                children: [
-                                  Text(
-                                    'delete',
-                                    style: small_dark_grey_title,
-                                  ),
-                                  IconButton(
-                                    onPressed: DeleteAccount,
-                                    icon: const CircleAvatar(
-                                      backgroundColor:
-                                          Color.fromARGB(255, 118, 27, 21),
-                                      child: Icon(
-                                        Icons.delete,
-                                        color: Colors.white,
+                                    Expanded(
+                                      flex: 1,
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            'edit',
+                                            style: small_dark_grey_title,
+                                          ),
+                                          IconButton(
+                                            onPressed: () {
+                                              Navigator.of(context)
+                                                  .push(MaterialPageRoute(builder: (context) {
+                                                    return EditAccount(data: snapshot
+                                                          .data.docs[index + 1]
+                                                          .data(),docid: snapshot
+                                                        .data
+                                                        .docs[index + 1]
+                                                        .reference
+                                                        .id
+                                                        .toString(),);
+                                                  },));
+                                            },
+                                            icon: CircleAvatar(
+                                              backgroundColor: subcolor,
+                                              child: const Icon(
+                                                Icons.edit,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ));
-                  },
-                ),
+                                    Expanded(
+                                      flex: 1,
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            'delete',
+                                            style: small_dark_grey_title,
+                                          ),
+                                          IconButton(
+                                            onPressed: () {
+                                              DeleteAccount(snapshot
+                                                  .data.docs[index + 1].reference.id.toString());
+                                            },
+                                            icon: const CircleAvatar(
+                                              backgroundColor: Color.fromARGB(
+                                                  255, 118, 27, 21),
+                                              child: Icon(
+                                                Icons.delete,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ));
+                          },
+                        );
+                      } else {
+                        return Center(
+                          child: Text('no data'),
+                        );
+                      }
+                    }),
               ),
               Row(
                 children: [

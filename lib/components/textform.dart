@@ -3,7 +3,7 @@ import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
 
 class Textform extends StatelessWidget {
-  const   Textform(
+     Textform(
       {super.key,
       required this.controller,
       required this.text,
@@ -16,6 +16,7 @@ class Textform extends StatelessWidget {
       required this.color,
       required this.height,
       required this.width,
+      this.onChanged,
       this.style});
   final TextEditingController controller;
   final String text;
@@ -28,11 +29,13 @@ class Textform extends StatelessWidget {
   final double height;
   final double width;
   final TextStyle? style;
+  void Function(String)? onChanged;
 
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      
       height: height,
       width: width,
       padding: EdgeInsets.only(left: 15),
@@ -43,6 +46,7 @@ class Textform extends StatelessWidget {
             BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 7)
           ]),
       child: TextFormField(
+        onChanged:onChanged,
         minLines: 1,
           validator: val??val,
           obscuringCharacter: '*',
