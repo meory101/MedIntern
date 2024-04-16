@@ -201,6 +201,9 @@ class _LogInState extends State<LogIn> {
 
                                           prefs!.setString('name',
                                               "${user.docs[0].data()['name']}");
+
+                                          prefs!.setString('email',
+                                              "${user.docs[0].data()['email']}");
                                           print('dddddddddddddd');
                                           print(prefs!.getString("name"));
                                           Navigator.of(context)
@@ -221,6 +224,9 @@ class _LogInState extends State<LogIn> {
                                           prefs!.setString('role', "admin");
                                           prefs!.setString('name',
                                               "${user.docs[0].data()['name']}");
+
+                                          prefs!.setString('email',
+                                              "${user.docs[0].data()['email']}");
                                           Navigator.of(context)
                                               .pushAndRemoveUntil(
                                             MaterialPageRoute(
@@ -240,6 +246,8 @@ class _LogInState extends State<LogIn> {
                                           prefs!.setString('name',
                                               "${user.docs[0].data()['name']}");
 
+                                          prefs!.setString('email',
+                                              "${user.docs[0].data()['email']}");
                                           Navigator.of(context)
                                               .pushAndRemoveUntil(
                                             MaterialPageRoute(

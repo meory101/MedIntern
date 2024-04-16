@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:med_intern/main.dart';
 import 'package:med_intern/supervisor_pages/supervisor_courses.dart';
 import 'package:med_intern/supervisor_pages/supervisor_home_content.dart';
 import 'package:med_intern/supervisor_pages/urgentcall.dart';
@@ -84,7 +85,7 @@ class _SupervisorBottomAppBarState extends State<SupervisorBottomAppBar> {
                         data: [
                           {
                             'title': Text(
-                              'Ahmad',
+                              '${prefs!.getString('name')}',
                               style: small_grey_title,
                             ),
                             'icon': const Icon(
@@ -106,7 +107,7 @@ class _SupervisorBottomAppBarState extends State<SupervisorBottomAppBar> {
                           },
                           {
                             'title': Text(
-                              'ahmadi@hotmail.com',
+                              '${prefs!.getString('email')}',
                               style: small_grey_title,
                             ),
                             'icon': const Icon(

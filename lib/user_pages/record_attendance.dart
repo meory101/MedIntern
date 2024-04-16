@@ -157,7 +157,7 @@ class _RecordAttendaceState extends State<RecordAttendace> {
                               long = LatLng.longitude;
                             });
                             if (Geolocator.distanceBetween(18.231080, 42.501417,
-                                    LatLng.latitude, LatLng.longitude) >=
+                                    LatLng.latitude, LatLng.longitude) <=
                                 5000) {
                               AwesomeDialog(
                                 context: context,

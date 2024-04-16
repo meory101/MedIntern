@@ -5,6 +5,7 @@ import 'package:med_intern/Admin_pages/Admin_home_content.dart';
 import 'package:med_intern/Admin_pages/mangeschedual.dart';
 import 'package:med_intern/components/roundbutton.dart';
 import 'package:med_intern/Admin_pages/manage_account.dart';
+import 'package:med_intern/main.dart';
 import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
 import 'package:med_intern/user_pages/more.dart';
@@ -89,7 +90,7 @@ class _AdminbottomappbarState extends State<Adminbottomappbar> {
                         data: [
                           {
                             'title': Text(
-                              'Jamal almasri',
+                              '${prefs!.getString('name')}',
                               style: small_grey_title,
                             ),
                             'icon': const Icon(
@@ -111,7 +112,7 @@ class _AdminbottomappbarState extends State<Adminbottomappbar> {
                           },
                           {
                             'title': Text(
-                              'jamal.masri@hotmail.com',
+                              '${prefs!.getString('email')}',
                               style: small_grey_title,
                             ),
                             'icon': const Icon(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:med_intern/main.dart';
 import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/user_pages/attendance.dart';
 import 'package:med_intern/user_pages/home_content.dart';
@@ -83,7 +84,7 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
                         data: [
                           {
                             'title': Text(
-                              'Abdulaziz Nawaf',
+                              '${prefs!.getString('name')}',
                               style: small_grey_title,
                             ),
                             'icon': const Icon(
@@ -92,20 +93,10 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
                               color: Colors.white,
                             )
                           },
+                         
                           {
                             'title': Text(
-                              '678054235',
-                              style: small_grey_title,
-                            ),
-                            'icon': const Icon(
-                              Icons.medical_services,
-                              size: 25,
-                              color: Colors.white,
-                            )
-                          },
-                          {
-                            'title': Text(
-                              'Aziz.na@hotmail.com',
+                              '${prefs!.getString('email')}',
                               style: small_grey_title,
                             ),
                             'icon': const Icon(

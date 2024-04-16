@@ -39,6 +39,7 @@ import 'package:med_intern/user_pages/view_attendance.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/services.dart';
 
 extension IsEmail on String {
   CheckEmail() {
@@ -66,7 +67,8 @@ void main() async {
         projectId: "medi-deb3a"),
   );
   prefs = await SharedPreferences.getInstance();
-
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(const MyApp());
 }
 
