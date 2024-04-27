@@ -48,7 +48,7 @@ class _SupervisorCourseDetState extends State<SupervisorCourseDet> {
     ];
     List routes = [
       SupAnnouncments(title: widget.title.data!,course_id:  widget.course_id,),
-      course_content(),
+      course_content(docid: widget.course_id,),
       grades(course_id: widget.course_id),
       Attendance(),
     ];

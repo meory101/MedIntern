@@ -15,6 +15,7 @@ import 'package:med_intern/components/textform.dart';
 import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
 
 class AddCourse extends StatefulWidget {
   const AddCourse({super.key});
@@ -50,34 +51,34 @@ class _AddCourseState extends State<AddCourse> {
     setState(() {});
   }
 
-  AddCourse() async {
-    if (fkey.currentState!.validate() && superid != null && file != null) {
-      var ref = FirebaseStorage.instance.ref('files').child(file!.path);
-      await ref.putFile(file!);
-      var url = await ref.getDownloadURL();
-      await FirebaseFirestore.instance.collection('courses').add(
-          {"title": title.text, "link": url, "superid": superid}).then((_) {
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) {
-            return const Adminbottomappbar();
-          },
-        ));
-      }).catchError((_) {
-        print("an error occured");
-      });
-    } else {
-      return AwesomeDialog(
-        context: context,
-        dialogType: DialogType.warning,
-        animType: AnimType.rightSlide,
-        title: '',
-        desc: 'all fields are required',
-      )..show();
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    AddCourse() async {
+      if (fkey.currentState!.validate() && superid != null && file != null) {
+       
+        var ref = await FirebaseStorage.instance
+            .ref('files')
+            .child(basename(file!.path));
+        await ref.putFile(file!);
+
+        var url = await ref.getDownloadURL();
+        await FirebaseFirestore.instance
+            .collection('courses')
+            .add({"title": title.text, "link": url, "superid": superid}).then(
+                (value) {
+          Navigator.of(context).pop();
+        });
+      } else {
+        return AwesomeDialog(
+          context: context,
+          dialogType: DialogType.warning,
+          animType: AnimType.rightSlide,
+          title: '',
+          desc: 'all fields are required',
+        )..show();
+      }
+    }
+
     return Scaffold(
       drawer: const MainDrawer(),
       appBar: PreferredSize(
@@ -130,22 +131,22 @@ class _AddCourseState extends State<AddCourse> {
                   ),
                   RecButton(
                       fun: () async {
-                        var image;
-                        image = await ImagePicker.platform
-                            .pickImage(source: ImageSource.gallery);
-                        if (image != null) {
-                          file = File(image.path);
-                          setState(() {});
-                        }
-                        // FilePickerResult? result = await FilePicker.platform
-                        //     .pickFiles(allowMultiple: false);
+                        // var image;
+                        // image = await ImagePicker.platform
+                        //     .pickImage(source: ImageSource.gallery);
+                        // if (image != null) {
+                        //   file = File(image.path);
+                        //   setState(() {});
+                        // }
+                        FilePickerResult? result = await FilePicker.platform
+                            .pickFiles(allowMultiple: false);
 
-                        // if (result != null) {
-                        //   List<File> files =
-                        //       result.paths.map((path) => File(path!)).toList();
+                        if (result != null) {
+                          List<File> files =
+                              result.paths.map((path) => File(path!)).toList();
 
-                        //   file = files.first;
-                        // } else {}
+                          file = files.first;
+                        } else {}
                       },
                       label: Text(
                         'upload course',

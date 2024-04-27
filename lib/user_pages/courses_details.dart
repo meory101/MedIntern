@@ -77,7 +77,7 @@ class _CourseDetState extends State<CourseDet> {
       ),
       MaterialPageRoute(
         builder: (context) {
-          return course_content();
+          return course_content(docid: widget.course_id ,);
         },
       ),
       MaterialPageRoute(
