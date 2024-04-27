@@ -47,6 +47,32 @@ extension name on String {
   }
 }
 
+extension idnum on String {
+  Checkid() {
+    return this.length == 10;
+  }
+}
+
+extension firstlastname on String {
+  chreckfirstlast() {
+    return RegExp(r'^[a-zA-Z]+$').hasMatch(this);
+  }
+}
+
+extension phonenum on String {
+  checkphonenum() {
+    return RegExp(r'^05\d{8}$').hasMatch(this);
+  }
+}
+
+extension Passwordst on String {
+  bool IsstrongPassword() {
+    return RegExp(
+            r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
+        .hasMatch(this);
+  }
+}
+
 extension IsEmail on String {
   CheckEmail() {
     return RegExp(
@@ -54,8 +80,6 @@ extension IsEmail on String {
         .hasMatch(this);
   }
 }
-
-
 
 extension Password on String {
   bool IsPassword() {
@@ -89,7 +113,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String? role;
-
   @override
   void initState() {
     if (prefs!.getString('role') != null) {
@@ -160,7 +183,7 @@ class _MyAppState extends State<MyApp> {
         'addAssignment': (context) => const addAssignment(),
         'Attendance': (context) => const internAttendance(),
         'grade': (context) => const interngrades(),
-        'sendcall': (context) => const sendcall(),
+        // 'sendcall': (context) =>  sendcall(),
         'tryagain': (context) => const tryagain(),
         'Manage Scheduale': (context) => const Mangeschedual(),
       },

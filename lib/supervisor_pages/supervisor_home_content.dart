@@ -104,11 +104,11 @@ class _SupervisorHomeState extends State<SupervisorHome> {
               )),
               InkWell(
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) {
-                      return sendcall();
-                    },
-                  ));
+                  // Navigator.of(context).push(MaterialPageRoute(
+                  //   builder: (context) {
+                  //     // return sendcall();
+                  //   },
+                  // ));
                 },
                 child: Container(
                     child: Container(

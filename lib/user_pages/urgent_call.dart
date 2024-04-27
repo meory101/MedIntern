@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:med_intern/components/list_tile.dart';
 import 'package:med_intern/components/main_appbar.dart';
 import 'package:med_intern/components/main_drawer.dart';
+import 'package:med_intern/main.dart';
 import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
 
@@ -14,6 +16,22 @@ class UrgentCalls extends StatefulWidget {
 }
 
 class _UrgentCallsState extends State<UrgentCalls> {
+  void initState() {
+    fun();
+    super.initState();
+  }
+
+  var accounts;
+
+  fun() {
+    print("${prefs!.getString('id')}");
+    accounts = FirebaseFirestore.instance
+        .collection('sendurgentcall')
+        .where('userid', isEqualTo: "${prefs!.getString('id')}")
+        .snapshots();
+    setState(() {});
+  }
+
   List<Text> titles = [
     Text(
       'Dr.khalid',
@@ -136,33 +154,43 @@ class _UrgentCallsState extends State<UrgentCalls> {
           title: 'Urgent Calls',
         ),
       ),
-      body: ListView.builder(
-        itemCount: 2,
-        itemBuilder: (context, index) {
-          return Container(
-            // height: 100,
-            margin: const EdgeInsets.only(top: 30),
-            child: Column(
-              children: [
-                CustomListTile(
-                  color: Colors.transparent,
-                  icon: Icon(
-                    Icons.notifications_active,
-                    size: 25,
-                    color: subcolor,
-                  ),
-                  title: titles[index],
-                  subtitle: subtitles[index],
-                ),
-                SizedBox(
-                  height: 4,
-                ),
-                date[index]
-              ],
-            ),
-          );
-        },
-      ),
+      body: StreamBuilder(
+          stream: accounts,
+          builder: (context, AsyncSnapshot snapshot) {
+            return !snapshot.hasData
+                ? Text('')
+                : ListView.builder(
+                    itemCount: snapshot.data.docs.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        // height: 100,
+                        margin: const EdgeInsets.only(top: 30),
+                        child: Column(
+                          children: [
+                            CustomListTile(
+                              color: Colors.transparent,
+                              icon: Icon(
+                                Icons.notifications_active,
+                                size: 25,
+                                color: subcolor,
+                              ),
+                              title: Text(
+                                  snapshot.data.docs[index].data()['title']),
+                              subtitle: Text(
+                                  snapshot.data.docs[index].data()['content']),
+                            ),
+                            SizedBox(
+                              height: 4,
+                            ),
+                            Text(snapshot.data.docs[index]
+                                .data()['date']
+                                .toString())
+                          ],
+                        ),
+                      );
+                    },
+                  );
+          }),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:med_intern/Admin_pages/manage_account.dart';
 import 'package:med_intern/auth_pages/login.dart';
@@ -89,8 +90,8 @@ class _createAccountState extends State<createAccount> {
                             child: Textform2(
                               validator: (p0) {
                                 if (p0 != null && p0.isNotEmpty) {
-                                  if (!p0.CheckName()) {
-                                    return "enter valid name";
+                                  if (!p0.chreckfirstlast()) {
+                                    return "enter valid name just letters";
                                   }
                                 } else {
                                   return 'rquired';
@@ -123,7 +124,11 @@ class _createAccountState extends State<createAccount> {
                               flex: 2,
                               child: Textform2(
                                   validator: (p0) {
-                                    if (p0!.isEmpty) {
+                                    if (p0 != null && p0.isNotEmpty) {
+                                      if (!p0.chreckfirstlast()) {
+                                        return "enter valid name just letters";
+                                      }
+                                    } else {
                                       return 'rquired';
                                     }
                                   },
@@ -153,7 +158,11 @@ class _createAccountState extends State<createAccount> {
                               flex: 2,
                               child: Textform2(
                                   validator: (p0) {
-                                    if (p0!.isEmpty) {
+                                    if (p0 != null && p0.isNotEmpty) {
+                                      if (!p0.Checkid()) {
+                                        return "enter valid id just 10 number";
+                                      }
+                                    } else {
                                       return 'rquired';
                                     }
                                   },
@@ -183,7 +192,11 @@ class _createAccountState extends State<createAccount> {
                             flex: 2,
                             child: Textform2(
                                 validator: (p0) {
-                                  if (p0!.isEmpty) {
+                                  if (p0 != null && p0.isNotEmpty) {
+                                    if (!p0.checkphonenum()) {
+                                      return "enter valid number start with 05";
+                                    }
+                                  } else {
                                     return 'rquired';
                                   }
                                 },
@@ -252,7 +265,7 @@ class _createAccountState extends State<createAccount> {
                               controller: password,
                               validator: (p0) {
                                 if (p0 != null && p0.isNotEmpty) {
-                                  if (!p0.IsPassword()) {
+                                  if (!p0.IsstrongPassword()) {
                                     return "enter valid password";
                                   }
                                 } else {

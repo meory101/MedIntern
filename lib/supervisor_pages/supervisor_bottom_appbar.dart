@@ -78,7 +78,7 @@ class _SupervisorBottomAppBarState extends State<SupervisorBottomAppBar> {
         body: _selectedIndex == 0
             ? const SupervisorHome()
             : _selectedIndex == 1
-                ? const SupUrgentCalls()
+                ?  SupUrgentCalls()
                 : _selectedIndex == 2
                     ? const SupervisorCourses()
                     : More(
