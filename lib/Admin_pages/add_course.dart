@@ -1,17 +1,20 @@
+import 'dart:io';
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:med_intern/Admin_pages/Admin_bottom_appbar.dart';
-import 'package:med_intern/auth_pages/login.dart';
 import 'package:med_intern/components/list_tile.dart';
 import 'package:med_intern/components/main_appbar.dart';
 import 'package:med_intern/components/main_drawer.dart';
+import 'package:med_intern/components/recbutton.dart';
 import 'package:med_intern/components/roundbutton.dart';
 import 'package:med_intern/components/textform.dart';
-import 'package:med_intern/main.dart';
-import 'package:med_intern/supervisor_pages/supervisor_bottom_appbar.dart';
 import 'package:med_intern/theme/colors.dart';
 import 'package:med_intern/theme/fonts.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddCourse extends StatefulWidget {
   const AddCourse({super.key});
@@ -21,6 +24,8 @@ class AddCourse extends StatefulWidget {
 }
 
 class _AddCourseState extends State<AddCourse> {
+  File? file;
+
   @override
   void initState() {
     fun();
@@ -46,18 +51,15 @@ class _AddCourseState extends State<AddCourse> {
   }
 
   AddCourse() async {
-    print('fffffffffffffffff');
-    if (fkey.currentState!.validate() && superid != null) {
-      print('fffffffffffffffff');
-
-      await FirebaseFirestore.instance.collection('courses').add({
-        "title": "${title.text}",
-        "link": "${link.text}".replaceAll(" ", ""),
-        "superid": superid
-      }).then((_) {
+    if (fkey.currentState!.validate() && superid != null && file != null) {
+      var ref = FirebaseStorage.instance.ref('files').child(file!.path);
+      await ref.putFile(file!);
+      var url = await ref.getDownloadURL();
+      await FirebaseFirestore.instance.collection('courses').add(
+          {"title": title.text, "link": url, "superid": superid}).then((_) {
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) {
-            return Adminbottomappbar();
+            return const Adminbottomappbar();
           },
         ));
       }).catchError((_) {
@@ -72,7 +74,6 @@ class _AddCourseState extends State<AddCourse> {
         desc: 'all fields are required',
       )..show();
     }
-    ;
   }
 
   @override
@@ -115,6 +116,7 @@ class _AddCourseState extends State<AddCourse> {
                         } else {
                           return 'rquired';
                         }
+                        return null;
                       },
                       controller: title,
                       text: 'title',
@@ -126,21 +128,35 @@ class _AddCourseState extends State<AddCourse> {
                   const SizedBox(
                     height: 10,
                   ),
-                  Textform(
-                      val: (p0) {
-                        if (p0 != null && p0.isNotEmpty) {
-                        } else {
-                          return 'rquired';
+                  RecButton(
+                      fun: () async {
+                        var image;
+                        image = await ImagePicker.platform
+                            .pickImage(source: ImageSource.gallery);
+                        if (image != null) {
+                          file = File(image.path);
+                          setState(() {});
                         }
+                        // FilePickerResult? result = await FilePicker.platform
+                        //     .pickFiles(allowMultiple: false);
+
+                        // if (result != null) {
+                        //   List<File> files =
+                        //       result.paths.map((path) => File(path!)).toList();
+
+                        //   file = files.first;
+                        // } else {}
                       },
-                      controller: link,
-                      text: 'course link',
-                      textInputType: TextInputType.text,
-                      obscure: false,
-                      color: Colors.white,
+                      label: Text(
+                        'upload course',
+                        style: file != null
+                            ? small_white_title
+                            : small_dark_grey_title,
+                      ),
+                      color: file != null ? maincolor : Colors.white,
                       height: 60,
                       width: double.infinity),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Column(
@@ -149,22 +165,31 @@ class _AddCourseState extends State<AddCourse> {
                         'select supervisor... ',
                         style: small_black_title,
                       ),
-                      Container(
+                      SizedBox(
                           height: MediaQuery.of(context).size.height / 3,
                           child: StreamBuilder(
                             stream: supers,
                             builder: (context, AsyncSnapshot snapshot) {
                               if (snapshot.hasData) {
                                 return Container(
-                                  margin: EdgeInsets.only(top: 50),
+                                  margin: const EdgeInsets.only(top: 50),
                                   child: ListView.builder(
                                     itemCount: snapshot.data.docs.length,
                                     itemBuilder: (context, index) {
                                       return Container(
-                                        margin: EdgeInsets.only(bottom: 20),
+                                        margin:
+                                            const EdgeInsets.only(bottom: 20),
                                         child: CustomListTile(
                                           icon: CircleAvatar(
-                                            backgroundColor: subcolor,
+                                            backgroundColor: snapshot
+                                                        .data
+                                                        .docs[index]
+                                                        .reference
+                                                        .id ==
+                                                    superid
+                                                ? const Color.fromARGB(
+                                                    255, 121, 37, 31)
+                                                : subcolor,
                                             child: IconButton(
                                               onPressed: () {
                                                 print(
@@ -180,9 +205,9 @@ class _AddCourseState extends State<AddCourse> {
                                                   title: '',
                                                   desc:
                                                       'supervisor is selected',
-                                                )..show();
+                                                ).show();
                                               },
-                                              icon: Icon(
+                                              icon: const Icon(
                                                 Icons.done_all_sharp,
                                                 color: Colors.white,
                                               ),
@@ -213,7 +238,7 @@ class _AddCourseState extends State<AddCourse> {
                                   ),
                                 );
                               } else {
-                                return Center(
+                                return const Center(
                                   child: Text('no accounts'),
                                 );
                               }

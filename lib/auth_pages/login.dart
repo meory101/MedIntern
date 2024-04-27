@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:med_intern/Admin_pages/Admin_bottom_appbar.dart';
@@ -103,12 +104,10 @@ class _LogInState extends State<LogIn> {
                     Padding(
                       padding: const EdgeInsets.only(left: 20),
                       child: Textform(
-                        val: (p0) {
+                         val: (p0) {
                           if (p0 != null && p0.isNotEmpty) {
-                            print(p0.length);
-                            if (p0.IsPassword()) {
-                              print('less');
-                              return "min 6";
+                            if (!p0.IsPassword()) {
+                              return "enter valid password";
                             }
                           } else {
                             return 'rquired';
@@ -258,6 +257,17 @@ class _LogInState extends State<LogIn> {
                                             (route) => false,
                                           );
                                         }
+                                      } else {
+                                        print('error');
+                                        Navigator.of(context).pop();
+                                        AwesomeDialog(
+                                          context: context,
+                                          dialogType: DialogType.error,
+                                          animType: AnimType.rightSlide,
+                                          title: 'Erorr',
+                                          desc:
+                                              'either email or password is wrong',
+                                        )..show();
                                       }
                                     }
                                   },
@@ -282,12 +292,13 @@ class _LogInState extends State<LogIn> {
                         ),
                         InkWell(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pushReplacement(MaterialPageRoute(
-                                builder: (context) {
-                                  return Register();
-                                },
-                              ));
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return Register();
+                                  },
+                                ),
+                              );
                             },
                             child: Text(
                               "signUp",

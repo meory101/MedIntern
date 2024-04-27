@@ -88,7 +88,11 @@ class _createAccountState extends State<createAccount> {
                             flex: 2,
                             child: Textform2(
                               validator: (p0) {
-                                if (p0!.isEmpty) {
+                                if (p0 != null && p0.isNotEmpty) {
+                                  if (!p0.CheckName()) {
+                                    return "enter valid name";
+                                  }
+                                } else {
                                   return 'rquired';
                                 }
                               },
@@ -211,7 +215,6 @@ class _createAccountState extends State<createAccount> {
                             child: Textform2(
                               controller: Email,
                               validator: (p0) {
-                                print(p0);
                                 if (p0 != null && p0.isNotEmpty) {
                                   if (!p0.CheckEmail()) {
                                     return "enter valid email";
@@ -248,11 +251,9 @@ class _createAccountState extends State<createAccount> {
                             child: Textform2(
                               controller: password,
                               validator: (p0) {
-                                if (p0 != null) {
-                                  print(p0.length);
-                                  if (p0.IsPassword()) {
-                                    print('less');
-                                    return "min 6";
+                                if (p0 != null && p0.isNotEmpty) {
+                                  if (!p0.IsPassword()) {
+                                    return "enter valid password";
                                   }
                                 } else {
                                   return 'rquired';
@@ -334,8 +335,10 @@ class _createAccountState extends State<createAccount> {
                                       "name": "${firstname.text}" +
                                           "${lastname.text}"
                                               .replaceAll(" ", ""),
-                                      "email": "${Email.text}".replaceAll(" ", ""),
-                                      "password": "${password.text}".replaceAll(" ", ""),
+                                      "email":
+                                          "${Email.text}".replaceAll(" ", ""),
+                                      "password": "${password.text}"
+                                          .replaceAll(" ", ""),
                                       "status": "1",
                                       "roleid": selecteditems
                                     }).then((value) {

@@ -83,6 +83,9 @@ class _RegisterState extends State<Register> {
                       child: Textform(
                         val: (p0) {
                           if (p0 != null && p0.isNotEmpty) {
+                            if (!p0.CheckName()) {
+                              return "enter valid name";
+                            }
                           } else {
                             return 'rquired';
                           }
@@ -141,10 +144,8 @@ class _RegisterState extends State<Register> {
                       child: Textform(
                         val: (p0) {
                           if (p0 != null && p0.isNotEmpty) {
-                            print(p0.length);
-                            if (p0.IsPassword()) {
-                              print('less');
-                              return "min 6";
+                            if (!p0.IsPassword()) {
+                              return "enter valid password";
                             }
                           } else {
                             return 'rquired';

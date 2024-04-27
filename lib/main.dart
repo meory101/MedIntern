@@ -41,6 +41,12 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/services.dart';
 
+extension name on String {
+  CheckName() {
+    return this.length >= 4;
+  }
+}
+
 extension IsEmail on String {
   CheckEmail() {
     return RegExp(
@@ -49,12 +55,13 @@ extension IsEmail on String {
   }
 }
 
+
+
 extension Password on String {
   bool IsPassword() {
-    return length < 6;
+    return this.length >= 6;
   }
 }
-
 SharedPreferences? prefs;
 
 void main() async {
@@ -62,6 +69,7 @@ void main() async {
   await Firebase.initializeApp(
     options: const FirebaseOptions(
         apiKey: "AIzaSyA-phM3cvU3pbLRfMrsqavx3o9uck_g_nA",
+        storageBucket: "medi-deb3a.appspot.com",
         appId: "1:694621040839:android:9b9fb31ac36fc23f038ee2",
         messagingSenderId: "694621040839",
         projectId: "medi-deb3a"),
